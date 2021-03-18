@@ -1,0 +1,28 @@
+﻿<Properties StartupConfiguration="{D54C3D76-C66A-4958-93FB-0CE3A35CCF29}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="tubes2stima/node.cs">
+    <Files>
+      <File FileName="tubes2stima/node.cs" Line="17" Column="6" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="tubes2stima" expanded="True">
+            <Node name="tubes2stima" expanded="True">
+              <Node name="node.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|anycpu" />
+  <MonoDevelop.Ide.ItemProperties.tubes2stima PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
