@@ -37,6 +37,18 @@ public class Node {
         numAdj++;
     }
 
+    // memeriksa apakah node punya tetangga dengan nama ..
+    public bool hasAdj(string name)
+    {
+        foreach (var node in adj)
+        {
+           if(node == name) { return true; }
+        }
+
+        return false;
+
+    }
+
     // memeriksa apakah nama node sama dengan ...
     public bool isNodeName(string name) { return this.name == name; }
 
@@ -66,6 +78,6 @@ public class Node {
         Console.WriteLine("Jumlah tetangga: " + numAdj);
         Console.Write("Daftar tetangga: ");
         printAdj();
-        Console.WriteLine("Dikungjungi: " + visited)
+        Console.WriteLine("Dikungjungi: " + visited);
     }
 }
