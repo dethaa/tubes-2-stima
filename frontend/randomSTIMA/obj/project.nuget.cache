@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "4SJPci3/xIv9J7Ug7VDWdBJfdeazKB/yQPVgSJ96n+1QGX79IrpMzxULpYuvrT9C2CvuceII3yhKht27hJ1DhQ==",
+  "dgSpecHash": "1qv8nsHC5FrT4fZel6jBrxCs/3vzrH/3ySiW91Ni4VfB0JMr/FCRuqivMhjjdrZ9okSpbQ8ivAlieL62rHNszQ==",
   "success": true,
-  "projectFilePath": "D:\\Kuliah\\Semester4\\TubesSTIMA2\\randomSTIMA\\randomSTIMA\\randomSTIMA.csproj",
+  "projectFilePath": "D:\\UserData\\SuperNova\\Documents\\tubes\\stima\\tubes-2-stima\\frontend\\randomSTIMA\\randomSTIMA.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Epata Tuah\\.nuget\\packages\\automaticgraphlayout\\1.1.11\\automaticgraphlayout.1.1.11.nupkg.sha512",
-    "C:\\Users\\Epata Tuah\\.nuget\\packages\\automaticgraphlayout.drawing\\1.1.11\\automaticgraphlayout.drawing.1.1.11.nupkg.sha512",
-    "C:\\Users\\Epata Tuah\\.nuget\\packages\\automaticgraphlayout.graphviewergdi\\1.1.11\\automaticgraphlayout.graphviewergdi.1.1.11.nupkg.sha512",
-    "C:\\Users\\Epata Tuah\\.nuget\\packages\\automaticgraphlayout.wpfgraphcontrol\\1.1.11\\automaticgraphlayout.wpfgraphcontrol.1.1.11.nupkg.sha512"
+    "C:\\Users\\SuperNova\\.nuget\\packages\\automaticgraphlayout\\1.1.11\\automaticgraphlayout.1.1.11.nupkg.sha512",
+    "C:\\Users\\SuperNova\\.nuget\\packages\\automaticgraphlayout.drawing\\1.1.11\\automaticgraphlayout.drawing.1.1.11.nupkg.sha512",
+    "C:\\Users\\SuperNova\\.nuget\\packages\\automaticgraphlayout.graphviewergdi\\1.1.11\\automaticgraphlayout.graphviewergdi.1.1.11.nupkg.sha512",
+    "C:\\Users\\SuperNova\\.nuget\\packages\\automaticgraphlayout.wpfgraphcontrol\\1.1.11\\automaticgraphlayout.wpfgraphcontrol.1.1.11.nupkg.sha512"
   ],
   "logs": []
 }
