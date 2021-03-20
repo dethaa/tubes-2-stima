@@ -16,7 +16,6 @@ public class Node {
         adj = new List<string>();
         numAdj = 0;
         visited = false;
-        Console.WriteLine("ctor ok");
     }
 
     // getter
@@ -68,7 +67,7 @@ public class Node {
         {
             Console.Write(getAdjOnIdx(i)+ " ");
         }
-        Console.WriteLine("\n");
+        Console.Write("\n");
     }
 
     // menampilkan informasi node
@@ -78,6 +77,6 @@ public class Node {
         Console.WriteLine("Jumlah tetangga: " + numAdj);
         Console.Write("Daftar tetangga: ");
         printAdj();
-        Console.WriteLine("Dikungjungi: " + visited);
+        Console.WriteLine("Dikungjungi: " + visited + "\n");
     }
 }

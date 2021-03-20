@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace tubes2stima
 {
@@ -44,6 +45,57 @@ namespace tubes2stima
             return searchNode(listNode, name).getName() == "NULL";
         }
 
+        public static List<List<string>> inputToList(string fileName)
+        {
+            int i, index1, index2;
+            string[] lines = System.IO.File.ReadAllLines(fileName);
+            int count = Int32.Parse(lines[0]);
+            List<List<string>> listAll = new List<List<string>>();
+
+            for (i = 1; i <= count; i++)
+            {
+                string[] strArr = lines[i].Split(' ');
+                List<string> strList = strArr.ToList();
+                index1 = findString(strList[0], listAll);
+                if (index1 == -1)
+                {
+                    listAll.Add(strList);
+                }
+                else
+                {
+                    listAll[index1].Add(strList[1]);
+                }
+
+                index2 = findString(strList[1], listAll);
+                if (index2 == -1)
+                {
+                    List<string> listTemp = new List<string>();
+                    listTemp.Add(strList[1]);
+                    listTemp.Add(strList[0]);
+                    listAll.Add(listTemp);
+                }
+                else
+                {
+                    listAll[index2].Add(strList[0]);
+                }
+            }
+            return listAll;
+        }
+
+        public static int findString(string str, List<List<string>> listAll)
+        {
+            int k = 0;
+            while (k < listAll.Count)
+            {
+                if (str == listAll[k][0])
+                {
+                    return k;
+                }
+                k++;
+            }
+            return -1;
+        }
+
         // membuat list of nodes
         public static List<Node> makeNodes(List<List<string>> listAdj)
         {
@@ -57,56 +109,9 @@ namespace tubes2stima
                 }
                 result.Add(temp);
             }
-
-            //List<Node> result = new List<Node>();
-
-            //string prev = "NULL";
-            /* A B
-             * A C
-             * A D
-             * B C
-             */
-
-            //Node temp;
-            //for (int i = 0; i < result.Count; i++) {
-            //    //if (prev == "NULL" || prev != listAdj[i][0])
-            //    //{
-            //    if (!isNodeExists(result, listAdj[i][0]))
-            //    {
-            //        temp = new Node(listAdj[i][0]);
-            //        result.Add(temp);
-
-            //    }
-
-            //    if (!isNodeExists(result, listAdj[i][1]))
-            //    {
-            //        temp = new Node(listAdj[i][1]);
-            //        result.Add(temp);
-
-            //    }
-
-            //    Node node1 = searchNode(result, listAdj[i][0]);
-            //    Node node2 = searchNode(result, listAdj[i][1]);
-
-
-            //    makeAdjEachOther(node1, node2);
-                    
-                    //prev = listAdj[i][0];
-                    
-                //} else {
-                //    if (!isNodeExists(result, listAdj[i][1]))
-                //    {
-                //        temp = new Node(listAdj[i][1]);
-                //        result.Add(temp);
-
-                //    }
-
-                //    makeAdjEachOther(searchNode(result, listAdj[i][0]), searchNode(result, listAdj[i][1]));
-
-                //}
-            // }
             return result;
             
         }
+
     }
 }

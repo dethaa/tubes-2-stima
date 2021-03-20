@@ -1,15 +1,16 @@
 ﻿<Properties StartupConfiguration="{D54C3D76-C66A-4958-93FB-0CE3A35CCF29}|Default">
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="tubes2stima/node.cs" Line="1" Column="1" />
-      <File FileName="tubes2stima/Input.cs" Line="52" Column="14" />
+      <File FileName="tubes2stima/Node.cs" Line="70" Column="29" />
+      <File FileName="tubes2stima/Input.cs" Line="47" Column="1" />
+      <File FileName="tubes2stima/Program.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="tubes2stima" expanded="True">
             <Node name="tubes2stima" expanded="True">
-              <Node name="Input.cs" selected="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
