@@ -1,0 +1,7 @@
+D:\Kuliah\Semester4\TubesSTIMA2\randomSTIMA\randomSTIMA\obj\Debug\net5.0-windows\randomSTIMA.csprojAssemblyReference.cache
+D:\Kuliah\Semester4\TubesSTIMA2\randomSTIMA\randomSTIMA\obj\Debug\net5.0-windows\randomSTIMA.Random.resources
+D:\Kuliah\Semester4\TubesSTIMA2\randomSTIMA\randomSTIMA\obj\Debug\net5.0-windows\randomSTIMA.csproj.GenerateResource.cache
+D:\Kuliah\Semester4\TubesSTIMA2\randomSTIMA\randomSTIMA\obj\Debug\net5.0-windows\randomSTIMA.GeneratedMSBuildEditorConfig.editorconfig
+D:\Kuliah\Semester4\TubesSTIMA2\randomSTIMA\randomSTIMA\obj\Debug\net5.0-windows\randomSTIMA.AssemblyInfoInputs.cache
+D:\Kuliah\Semester4\TubesSTIMA2\randomSTIMA\randomSTIMA\obj\Debug\net5.0-windows\randomSTIMA.AssemblyInfo.cs
+D:\Kuliah\Semester4\TubesSTIMA2\randomSTIMA\randomSTIMA\obj\Debug\net5.0-windows\randomSTIMA.csproj.CoreCompileInputs.cache
