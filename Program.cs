@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Application
@@ -9,41 +10,42 @@ namespace Application
             int i;
             //Console.Write("Masukkan nama file: ");
             //string fileName = Console.ReadLine();
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\HP\Documents\C#\test1.txt");
-            //string[] lines = System.IO.File.ReadAllLines(@"C:\Users\HP\Documents\C#\" + fileName);
-            //System.Console.WriteLine("Isi dari " + fileName + ":");
-            foreach (string line in lines){
-                //Console.WriteLine(line);
-            }
+            //List<List<string>> listAll = inputToList(fileName);
+
+            List<List<string>> listAll = inputToList("test1.txt");
+            for (i=0; i<listAll.Count;i++){
+                listAll[i].ForEach(Console.Write);
+                Console.WriteLine();
+            } 
+        } 
+
+        public static List<List<string>> inputToList(string fileName){
+            int i, index1, index2;
+            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\HP\Documents\C#\" + fileName);
             int count = Int32.Parse(lines[0]);
-            //System.Console.WriteLine(lines.Length);
-            //string[] words = lines[1].Split(' ');
-            //foreach (string word in words){
-                //Console.WriteLine(word);
-
             List<List<string>> listAll = new List<List<string>>();
-            List<string> listTemp = new List<string>();
-            for(i=1;i<count;i++){
-                int index1,index2;
-                string[] words = lines[i].Split(' ');
-                index1 = findString(words[0],listAll);
+            
+            for(i=1;i<=count;i++){
+                string[] strArr = lines[i].Split(' ');
+                List<string> strList = strArr.ToList();
+                index1 = findString(strList[0],listAll);
                 if (index1 == -1){
-                    listTemp.Clear();
-                    listTemp.AddRange(words);
+                    listAll.Add(strList);
                 } else {
-                    listAll[index1].Add(words[1]);
+                    listAll[index1].Add(strList[1]);
                 }
-
-                index2 = findString(words[1],listAll);
+                
+                index2 = findString(strList[1],listAll);
                 if (index2 == -1){
-                    listTemp.Clear();
-                    listTemp.Add(words[1]);
-                    listTemp.Add(words[0]);
+                    List<string> listTemp = new List<string>();
+                    listTemp.Add(strList[1]);
+                    listTemp.Add(strList[0]);
+                    listAll.Add(listTemp);
                 } else {
-                    listAll[index2].Add(words[0]);
-                }
-            }
-            listAll.ForEach(Console.WriteLine);
+                    listAll[index2].Add(strList[0]);
+                } 
+            } 
+            return listAll;
         } 
 
         public static int findString(string str, List<List<string>> listAll){
@@ -55,7 +57,7 @@ namespace Application
                 k++;
             }
             return -1;
-        }
+        } 
     } 
 
 }
