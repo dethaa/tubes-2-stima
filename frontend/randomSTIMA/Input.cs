@@ -12,14 +12,6 @@ namespace randomSTIMA
         {
         }
 
-        // membaca file dan menyimpan ke dalam array
-        public static void readFile()
-        {
-            // harusnya mengembalikan list of tuple/list of string
-        }
-
-        // menjadikan 2 node saling bertetangga
-        // misal ada (A, B) maka di adj punya A diisi B dan di adj punya B diisi A
         public static void makeAdjEachOther(Node a, Node b)
         {
             a.addNewAdj(b.getName());
