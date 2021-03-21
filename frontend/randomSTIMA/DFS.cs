@@ -61,18 +61,25 @@ namespace randomSTIMA
             Node temp = Utility.searchNode(listNode, person);
             Stack stack = new Stack();
 
+            string garbage;
             string adj = person;
-            bool found = false;
             List<string> result = new List<string>();
 
             stack.Push(adj);
             listNode[Utility.getNodeIdx(listNode, person)].hasVisited();
-            while (stack.Top() != friend && temp.getPriorityAdj(listNode) != "NULL")
+            while (stack.Top() != friend && !Utility.isAllVisited(listNode))
             {
-                adj = temp.getPriorityAdj(listNode);
-                temp = Utility.searchNode(listNode, adj);
-                listNode[Utility.getNodeIdx(listNode, temp.getName())].hasVisited();
-                stack.Push(adj);
+                if (temp.getPriorityAdj(listNode) == "NULL")
+                {
+                    garbage = stack.Pop();
+                    temp = Utility.searchNode(listNode, stack.Top());
+                } else
+                {
+                    adj = temp.getPriorityAdj(listNode);
+                    temp = Utility.searchNode(listNode, adj);
+                    listNode[Utility.getNodeIdx(listNode, temp.getName())].hasVisited();
+                    stack.Push(adj);
+                }
 
             }
 
