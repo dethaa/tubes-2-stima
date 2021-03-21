@@ -8,37 +8,7 @@ namespace randomSTIMA
 {
     public class Input
     {
-        public Input()
-        {
-        }
-
-        public static void makeAdjEachOther(Node a, Node b)
-        {
-            a.addNewAdj(b.getName());
-            b.addNewAdj(a.getName());
-        }
-
-        // mencari node dengan nama .. di list of node
-        // dipastikan ada node dengan nama yang dicari
-        public static Node searchNode(List<Node> listNode, string name)
-        {
-            foreach (var node in listNode)
-            {
-                if (node.isNodeName(name))
-                {
-                    return node;
-                }
-            }
-
-            // ini biar gak error aja walaupun sebenernya gak bakal kesini sih
-            return new Node("NULL");
-
-        }
-
-        public static bool isNodeExists(List<Node> listNode, string name)
-        {
-            return searchNode(listNode, name).getName() == "NULL";
-        }
+        public Input() {}
 
         public static List<List<string>> inputToList(string fileName)
         {
@@ -51,7 +21,7 @@ namespace randomSTIMA
             {
                 string[] strArr = lines[i].Split(' ');
                 List<string> strList = strArr.ToList();
-                index1 = findString(strList[0], listAll);
+                index1 = Utility.findString(strList[0], listAll);
                 if (index1 == -1)
                 {
                     listAll.Add(strList);
@@ -61,7 +31,7 @@ namespace randomSTIMA
                     listAll[index1].Add(strList[1]);
                 }
 
-                index2 = findString(strList[1], listAll);
+                index2 = Utility.findString(strList[1], listAll);
                 if (index2 == -1)
                 {
                     List<string> listTemp = new List<string>();
@@ -75,20 +45,6 @@ namespace randomSTIMA
                 }
             }
             return listAll;
-        }
-
-        public static int findString(string str, List<List<string>> listAll)
-        {
-            int k = 0;
-            while (k < listAll.Count)
-            {
-                if (str == listAll[k][0])
-                {
-                    return k;
-                }
-                k++;
-            }
-            return -1;
         }
 
         // membuat list of nodes
