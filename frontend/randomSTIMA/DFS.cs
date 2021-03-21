@@ -73,9 +73,10 @@ namespace randomSTIMA
                 temp = Utility.searchNode(listNode, adj);
                 listNode[Utility.getNodeIdx(listNode, temp.getName())].hasVisited();
                 stack.Push(adj);
+
             }
 
-            if (found)
+            if (stack.Top() == friend)
             {
                 while(!stack.isEmpty())
                 {
