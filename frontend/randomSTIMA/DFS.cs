@@ -38,7 +38,7 @@ namespace randomSTIMA
             bool found = false;
             while(!found)
             {
-                if(checkIfInResult(result, copy.getPriortyAdj()) {
+                if(checkIfInResult(result, copy.getPriortyAdj())) {
                     adjCopy.Remove(copy.getPriortyAdj());
                     copy.setAdj(adjCopy);
                 } else
@@ -52,7 +52,7 @@ namespace randomSTIMA
 
         // Mencari mutual friend dari person melalui friend. Dipastikan person dan
         // friend ada di
-        public static List<string> GetMutuals(List<Node> nodes, string person, string friend)
+        public static List<Element> GetMutuals(List<Node> nodes, string person, string friend)
         {
             List<Element> result = new List<Element>();
             Stack stack = new Stack();
@@ -75,17 +75,16 @@ namespace randomSTIMA
                     {
                         if (previous.isNull()) {
                             previous.setElement(firstPerson.getPriortyAdj(previous.getName()), previous.getDegree()+1);
-                            stack.Push(previous);
                         } else
                         {
                             if (previous.getDegree() > stack.Top().getDegree())
                             {
-                                previous = new Element(getAdjNotVisited(result, Utility.searchNode(nodes, previous.getName())), previous.getDegree()-1);
+                                previous.setElement(getAdjNotVisited(result, Utility.searchNode(nodes, previous.getName())), previous.getDegree()-1);
                             } else
                             {
-                                previous = new Element(getAdjNotVisited(result, Utility.searchNode(nodes, previous.getName())), previous.getDegree() + 1);
-
+                                previous.setElement(getAdjNotVisited(result, Utility.searchNode(nodes, previous.getName())), previous.getDegree() + 1);
                             }
+                            stack.Push(previous);
                         }
                     }
 
@@ -93,7 +92,7 @@ namespace randomSTIMA
 
             }
             // for now
-            return new List<string>();
+            return result;
         }
     }
 }
