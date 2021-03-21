@@ -51,5 +51,36 @@ namespace randomSTIMA
             }
             return -1;
         }
+
+        public static string compareString(string A, string B)
+        {
+            if (String.Compare(A, B) == 1) {
+                return A;
+            } else
+            {
+                return B;
+            }
+        }
+
+        public static Node compareNode(Node A, Node B)
+        {
+            if (compareString(A.getName(), B.getName()) == A.getName())
+            {
+                if (A.isVisited())
+                {
+                    return A;
+                }
+
+                return B;
+            } else
+            {
+                if (B.isVisited())
+                {
+                    return A;
+                }
+                return B;
+            }
+        }
+
     }
 }

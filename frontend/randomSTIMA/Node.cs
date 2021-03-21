@@ -23,6 +23,21 @@ namespace randomSTIMA
             numAdj = 0;
             visited = false;
         }
+        
+        public Node(string name, List<string> adj)
+        {
+            this.name = name;
+            this.adj = adj;
+            numAdj = adj.Count;
+            visited = false;
+        }
+
+        // setter
+        public void setAdj(List<string> newAdj)
+        {
+            this.adj = newAdj;
+            this.numAdj = newAdj.Count;
+        }
 
         // getter
 
@@ -62,6 +77,54 @@ namespace randomSTIMA
 
         // mengubah status node menjadi belum dikunjungi
         public void notVisited() { visited = false; }
+
+        // mengambil tetangga prioritas (tidak melihat udh dikunjungi apa blm)
+        public string getPriortyAdj(string exclude = "NULL"){
+            string result = "NULL";
+            int i;
+            if (exclude == "NuLL")
+            {
+                result = adj[0];
+                for(i = 1; i < numAdj; i++)
+                {
+                    result = Utility.compareString(result, adj[i]);
+                }
+
+                return result;
+
+            } else
+            {
+                i = 0;
+                bool found = false;
+                
+                while (i < numAdj && !found)
+                {
+                    if (adj[i] == exclude)
+                    {
+                        i++;
+                    } else
+                    {
+                        result = adj[i];
+                        found = true;
+                    }
+                }
+
+                
+
+                if(found)
+                {
+                    for (i = 1; i < numAdj; i++)
+                    {
+                        result = Utility.compareString(result, adj[i]);
+                    }
+
+                    return result;
+
+                }
+
+                return result;
+            }
+        }
 
         // output methods
 

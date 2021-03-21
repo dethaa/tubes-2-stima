@@ -8,34 +8,38 @@ namespace randomSTIMA
 {
     class Stack
     {
-        private List<string> elements;
+        private List<Element> elements;
         private int numElements;
-        Stack()
+        public Stack()
         {
-            elements = new List<string>();
+            elements = new List<Element>();
             numElements = 0;
         }
 
-        public void Push(string newElmt)
+        public Element Top()
+        {
+            return elements[numElements - 1];
+        }
+        public void Push(Element newElmt)
         {
             elements.Add(newElmt);
             numElements++;
         }
 
-        public string Pop()
+        public Element Pop()
         {
             if (numElements > 0)
             {
                 numElements--;
-                string result = elements[numElements];
+                Element result = elements[numElements];
                 elements.RemoveAt(numElements);
                 return result;
 
             }
-
-            return "NULL";
-
+            return new Element("NULL", 0);
         }
+
+        public bool isEmpty() { return numElements == 0; }
 
         public void Show()
         {
