@@ -13,7 +13,7 @@ namespace randomSTIMA
 
         }
 
-        public static bool checkIfInResult(List<Element> result, string name)
+        public static bool checkIfInResult(List<Friend> result, string name)
         {
             foreach (var elmt in result)
             {
@@ -26,72 +26,65 @@ namespace randomSTIMA
             return false;
         }
 
-        public static string getAdjNotVisited(List<Element> result, Node A)
+        public static List<string> getNodeWithAdj(List<Node> listNode, string person)
         {
-            List<string> adjCopy = new List<string>();
-            foreach (var adj in A.getAllAdj())
+            List<string> result = new List<string>();
+            foreach (var elmt in listNode)
             {
-                adjCopy.Add(adj);
+                if (elmt.hasAdj(person)) { result.Add(elmt.getName()); }
             }
 
-            Node copy = new Node(A.getName(), adjCopy);
-            bool found = false;
-            while(!found)
+            return result;
+        }
+        public static List<string> Recommend(List<Node> listNode, string person)
+        {
+            Node personNode = Utility.searchNode(listNode, person);
+            Node friendNode;
+            List<string> newFriends = new List<string>();
+            foreach (var friend in personNode.getAllAdj())
             {
-                if(checkIfInResult(result, copy.getPriortyAdj())) {
-                    adjCopy.Remove(copy.getPriortyAdj());
-                    copy.setAdj(adjCopy);
-                } else
+                friendNode = Utility.searchNode(listNode, friend);
+                foreach (var rec in friendNode.getAllAdj())
                 {
-                    return copy.getPriortyAdj();
+                    if (!personNode.hasAdj(rec) && rec != person && !newFriends.Contains(rec))
+                    {
+                        newFriends.Add(rec);
+                    }
                 }
             }
 
-            return "NULL";
+            return newFriends;
         }
 
-        // Mencari mutual friend dari person melalui friend. Dipastikan person dan
-        // friend ada di
-        public static List<Element> GetMutuals(List<Node> nodes, string person, string friend)
+        public static List<string> Explore(List<Node> listNode, string person, string friend)
         {
-            List<Element> result = new List<Element>();
+            Node temp = Utility.searchNode(listNode, person);
             Stack stack = new Stack();
-            stack.Push(new Element(person, 0));
-            Node firstPerson = Utility.searchNode(nodes, person);
-            Element previous = new Element("NULL", 0);
-            List<string> initAdjFirst = firstPerson.getAllAdj();
-            while(!stack.isEmpty())
+
+            string adj = person;
+            bool found = false;
+            List<string> result = new List<string>();
+
+            stack.Push(adj);
+            listNode[Utility.getNodeIdx(listNode, person)].hasVisited();
+            while (stack.Top() != friend && temp.getPriorityAdj(listNode) != "NULL")
             {
-                if (stack.Top().getName() == person)
-                {
-                    previous = stack.Pop();
-                } else
-                {
-                    if(getAdjNotVisited(result, Utility.searchNode(nodes, previous.getName())) == "NULL")
-                    {
-                        previous = stack.Pop();
-                        result.Add(previous);
-                    } else
-                    {
-                        if (previous.isNull()) {
-                            previous.setElement(firstPerson.getPriortyAdj(previous.getName()), previous.getDegree()+1);
-                        } else
-                        {
-                            if (previous.getDegree() > stack.Top().getDegree())
-                            {
-                                previous.setElement(getAdjNotVisited(result, Utility.searchNode(nodes, previous.getName())), previous.getDegree()-1);
-                            } else
-                            {
-                                previous.setElement(getAdjNotVisited(result, Utility.searchNode(nodes, previous.getName())), previous.getDegree() + 1);
-                            }
-                            stack.Push(previous);
-                        }
-                    }
-
-                }
-
+                adj = temp.getPriorityAdj(listNode);
+                temp = Utility.searchNode(listNode, adj);
+                listNode[Utility.getNodeIdx(listNode, temp.getName())].hasVisited();
+                stack.Push(adj);
             }
-            // for now
+
+            if (found)
+            {
+                while(!stack.isEmpty())
+                {
+                    result.Add(stack.Pop());
+                }
+                
+            }
+
+
             return result;
         }
     }

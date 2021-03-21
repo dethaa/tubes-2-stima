@@ -79,51 +79,24 @@ namespace randomSTIMA
         public void notVisited() { visited = false; }
 
         // mengambil tetangga prioritas (tidak melihat udh dikunjungi apa blm)
-        public string getPriortyAdj(string exclude = "NULL"){
+        public string getPriorityAdj(List<Node> listNode){
             string result = "NULL";
-            int i;
-            if (exclude == "NuLL")
+            int i = 0;
+            bool found = false;
+
+            while (!found && i < numAdj)
             {
-                result = adj[0];
-                for(i = 1; i < numAdj; i++)
+                if (!Utility.searchNode(listNode, adj[i]).isVisited())
                 {
-                    result = Utility.compareString(result, adj[i]);
+                    result = Utility.searchNode(listNode, adj[i]).getName();
+                    found = true;
                 }
-
-                return result;
-
-            } else
-            {
-                i = 0;
-                bool found = false;
-                
-                while (i < numAdj && !found)
-                {
-                    if (adj[i] == exclude)
-                    {
-                        i++;
-                    } else
-                    {
-                        result = adj[i];
-                        found = true;
-                    }
-                }
-
-                
-
-                if(found)
-                {
-                    for (i = 1; i < numAdj; i++)
-                    {
-                        result = Utility.compareString(result, adj[i]);
-                    }
-
-                    return result;
-
-                }
-
-                return result;
+                i++;
             }
+
+            return result;
+
+         
         }
 
         // output methods

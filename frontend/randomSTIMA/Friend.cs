@@ -6,18 +6,24 @@ using System.Threading.Tasks;
 
 namespace randomSTIMA
 {
-    class Element
+    class Friend
     {
         private string name;
         private int degree;
-        public Element(string name, int degree)
+        private List<string> mutuals;
+        public Friend(string name, int degree)
         {
             this.name = name;
             this.degree = degree;
+            this.mutuals = new List<string>();
         }
 
         public string getName() { return name; }
         public int getDegree() { return degree; }
+
+        public List<string> getMutuals() { return mutuals; }
+
+        public void setMutuals(List<string> mutuals) { this.mutuals = mutuals; }
         public void show()
         {
             Console.WriteLine(name + " , " + degree);
@@ -28,7 +34,7 @@ namespace randomSTIMA
             return name == "NULL" && degree == 0;
         }
 
-        public void setElement(string name, int degree)
+        public void setFriend(string name, int degree)
         {
             this.name = name;
             this.degree = degree;

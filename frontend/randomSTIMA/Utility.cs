@@ -27,6 +27,30 @@ namespace randomSTIMA
 
         }
 
+        public static int getNodeIdx(List<Node> listNode, string person)
+        {
+            int i = 0;
+            foreach(var elmt in listNode)
+            {
+                if (elmt.getName() == person) { return i; }
+                i++;
+            }
+
+            return -1;
+        }
+
+        public static bool isAllVisited(List<Node> listNode)
+        {
+            
+            foreach(var adj in listNode)
+            {
+                if(!adj.isVisited()) { return false; }
+            }
+
+            return true;
+            
+        }
+
         public static void makeAdjEachOther(Node a, Node b)
         {
             a.addNewAdj(b.getName());
@@ -80,6 +104,23 @@ namespace randomSTIMA
                 }
                 return B;
             }
+        }
+        
+        // mengembalikan mutual friend, dipastikan ada isinya
+        public static List<string> getMutualFriend(List<Node> listNode, string person, string friend)
+        {
+            List<string> result = new List<string>();
+            foreach(var node in listNode)
+            {
+                if (node.getName() != person)
+                {
+                    if(node.hasAdj(friend) && node.hasAdj(person)) {
+                        result.Add(node.getName());
+                    }
+                }
+            }
+
+            return result;
         }
 
     }
