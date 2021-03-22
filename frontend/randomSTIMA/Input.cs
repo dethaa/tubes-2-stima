@@ -8,8 +8,6 @@ namespace randomSTIMA
 {
     public class Input
     {
-        public Input() {}
-
         public static List<List<string>> inputToList(string fileName)
         {
             int i, index1, index2;
@@ -58,8 +56,10 @@ namespace randomSTIMA
                 {
                     temp.addNewAdj(nodes[i]);
                 }
+                temp.sortAdj();
                 result.Add(temp);
             }
+            
             return result;
 
         }

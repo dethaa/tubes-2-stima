@@ -110,13 +110,12 @@ namespace randomSTIMA
         public static List<string> getMutualFriend(List<Node> listNode, string person, string friend)
         {
             List<string> result = new List<string>();
-            foreach(var node in listNode)
+            List<string> mutualFriend = DFS.getNodeWithAdj(listNode, friend);
+            foreach (var i in mutualFriend)
             {
-                if (node.getName() != person)
+                if (Utility.searchNode(listNode, person).hasAdj(i))
                 {
-                    if(node.hasAdj(friend) && node.hasAdj(person)) {
-                        result.Add(node.getName());
-                    }
+                    result.Add(i);
                 }
             }
 

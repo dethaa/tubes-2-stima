@@ -32,11 +32,13 @@ namespace randomSTIMA
             visited = false;
         }
 
+
         // setter
         public void setAdj(List<string> newAdj)
         {
             this.adj = newAdj;
             this.numAdj = newAdj.Count;
+            sortAdj();
         }
 
         // getter
@@ -49,6 +51,7 @@ namespace randomSTIMA
         public bool isVisited() { return visited; }
 
         // methods
+        public void sortAdj() { this.adj.Sort(); }
 
         // menambahkan tetangga baru
         public void addNewAdj(string name)
@@ -78,8 +81,8 @@ namespace randomSTIMA
         // mengubah status node menjadi belum dikunjungi
         public void notVisited() { visited = false; }
 
-        // mengambil tetangga prioritas (tidak melihat udh dikunjungi apa blm)
-        public string getPriorityAdj(List<Node> listNode){
+        // mengambil tetangga prioritas
+        public string getPriorityAdj(List<Node> listNode){ 
             string result = "NULL";
             int i = 0;
             bool found = false;

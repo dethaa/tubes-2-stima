@@ -13,19 +13,6 @@ namespace randomSTIMA
 
         }
 
-        public static bool checkIfInResult(List<Friend> result, string name)
-        {
-            foreach (var elmt in result)
-            {
-                if(elmt.getName() == name)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         public static List<string> getNodeWithAdj(List<Node> listNode, string person)
         {
             List<string> result = new List<string>();
@@ -67,7 +54,7 @@ namespace randomSTIMA
 
             stack.Push(adj);
             listNode[Utility.getNodeIdx(listNode, person)].hasVisited();
-            while (stack.Top() != friend && !Utility.isAllVisited(listNode))
+            while (stack.Top() != friend && !Utility.isAllVisited(listNode) && !stack.isEmpty())
             {
                 if (temp.getPriorityAdj(listNode) == "NULL")
                 {
