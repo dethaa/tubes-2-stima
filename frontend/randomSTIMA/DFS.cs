@@ -83,6 +83,7 @@ namespace randomSTIMA
             }
 
             Utility.resetStatus(listNode);
+            result.Reverse();
             return Utility.createRelationTuple(result);
         }
     }
