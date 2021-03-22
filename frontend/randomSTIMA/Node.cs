@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace randomSTIMA
+namespace nyobadewe
 {
     public class Node
     {
@@ -13,6 +13,7 @@ namespace randomSTIMA
         private List<string> adj;
         private int numAdj;
         private bool visited;
+        private string parent;
 
 
         // constructor
@@ -22,8 +23,9 @@ namespace randomSTIMA
             adj = new List<string>();
             numAdj = 0;
             visited = false;
+            parent = "null";
         }
-        
+
         public Node(string name, List<string> adj)
         {
             this.name = name;
@@ -41,6 +43,11 @@ namespace randomSTIMA
             sortAdj();
         }
 
+        public void setParent(string parent)
+        {
+            this.parent = parent;
+        }
+
         // getter
 
         // mengambil nama node
@@ -49,10 +56,12 @@ namespace randomSTIMA
         public string getAdjOnIdx(int idx) { return adj[idx]; }
         public int getNumAdj() { return numAdj; }
         public bool isVisited() { return visited; }
+        public string getParent() { return parent; }
 
         // methods
         public void sortAdj() { this.adj.Sort(); }
 
+        
         // menambahkan tetangga baru
         public void addNewAdj(string name)
         {
@@ -82,7 +91,8 @@ namespace randomSTIMA
         public void notVisited() { visited = false; }
 
         // mengambil tetangga prioritas
-        public string getPriorityAdj(List<Node> listNode){ 
+        public string getPriorityAdj(List<Node> listNode)
+        {
             string result = "NULL";
             int i = 0;
             bool found = false;
@@ -99,12 +109,11 @@ namespace randomSTIMA
 
             return result;
 
-         
         }
 
-        public bool isAllAdjVisited(List<Node> listNode) 
+        public bool isAllAdjVisited(List<Node> listNode)
         {
-            foreach(var adj in this.adj)
+            foreach (var adj in this.adj)
             {
                 if (!Utility.searchNode(listNode, adj).isVisited())
                 {
@@ -135,8 +144,7 @@ namespace randomSTIMA
             Console.WriteLine("Jumlah tetangga: " + numAdj);
             Console.Write("Daftar tetangga: ");
             printAdj();
-            Console.WriteLine("Dikungjungi: " + visited + "\n");
+            Console.WriteLine("Dikunjungi: " + visited + "\n");
         }
     }
-
 }
