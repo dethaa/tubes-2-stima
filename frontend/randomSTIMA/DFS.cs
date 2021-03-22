@@ -41,23 +41,12 @@ namespace randomSTIMA
                     listNode[Utility.getNodeIdx(listNode, friendNode.getPriorityAdj(listNode))].hasVisited();
                 }
             }
-            /*
-            foreach (var friend in personNode.getAllAdj())
-            {
-                friendNode = Utility.searchNode(listNode, friend);
-                foreach (var rec in friendNode.getAllAdj())
-                {
-                    if (!personNode.hasAdj(rec) && rec != person && !newFriends.Contains(rec))
-                    {
-                        newFriends.Add(rec);
-                    }
-                }
-            }*/
 
+            Utility.resetStatus(listNode);
             return newFriends;
         }
 
-        public static List<string> Explore(List<Node> listNode, string person, string friend)
+        public static List<List<string>> Explore(List<Node> listNode, string person, string friend)
         {
             Node temp = Utility.searchNode(listNode, person);
             Stack stack = new Stack();
@@ -93,8 +82,8 @@ namespace randomSTIMA
                 
             }
 
-
-            return result;
+            Utility.resetStatus(listNode);
+            return Utility.createRelationTuple(result);
         }
     }
 }

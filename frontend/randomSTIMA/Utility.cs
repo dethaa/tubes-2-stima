@@ -122,5 +122,27 @@ namespace randomSTIMA
             return result;
         }
 
+        // mereset semua status menjadi false
+        public static void resetStatus(List<Node> listNode)
+        {
+            foreach (var node in listNode) { node.notVisited(); }
+        }
+
+        // mengubah list hasil a b c d menjadi (a,b)(b,c)(c,d)
+        public static List<List<string>> createRelationTuple(List<string> listNode)
+        {
+            List<List<string>> result = new List<List<string>>();
+            List<string> temp;
+            for (int i = 0; i < listNode.Count - 1; i++)
+            {
+                temp = new List<string>();
+                temp.Add(listNode[i]);
+                temp.Add(listNode[i + 1]);
+                result.Add(temp);
+            }
+
+            return result;
+        }
+
     }
 }
