@@ -18,7 +18,11 @@ namespace randomSTIMA
 
         public string Top()
         {
-            return friends[numFriends - 1];
+            if (numFriends > 0)
+            {
+                 return friends[numFriends - 1];
+            }
+            return "NULL";
         }
         public void Push(string newElmt)
         {

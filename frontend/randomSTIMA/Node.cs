@@ -102,6 +102,19 @@ namespace randomSTIMA
          
         }
 
+        public bool isAllAdjVisited(List<Node> listNode) 
+        {
+            foreach(var adj in this.adj)
+            {
+                if (!Utility.searchNode(listNode, adj).isVisited())
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         // output methods
 
         // menampilkan semua tetangga ke layar

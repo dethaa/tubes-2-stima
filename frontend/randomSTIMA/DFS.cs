@@ -26,8 +26,22 @@ namespace randomSTIMA
         public static List<string> Recommend(List<Node> listNode, string person)
         {
             Node personNode = Utility.searchNode(listNode, person);
+            listNode[Utility.getNodeIdx(listNode, person)].hasVisited();
             Node friendNode;
+            // Stack stack = new Stack();
             List<string> newFriends = new List<string>();
+
+            while(!personNode.isAllAdjVisited(listNode))
+            {
+                friendNode = Utility.searchNode(listNode, personNode.getPriorityAdj(listNode));
+                listNode[Utility.getNodeIdx(listNode, friendNode.getName())].hasVisited();
+                while(!friendNode.isAllAdjVisited(listNode))
+                {
+                    newFriends.Add(friendNode.getPriorityAdj(listNode));
+                    listNode[Utility.getNodeIdx(listNode, friendNode.getPriorityAdj(listNode))].hasVisited();
+                }
+            }
+            /*
             foreach (var friend in personNode.getAllAdj())
             {
                 friendNode = Utility.searchNode(listNode, friend);
@@ -38,7 +52,7 @@ namespace randomSTIMA
                         newFriends.Add(rec);
                     }
                 }
-            }
+            }*/
 
             return newFriends;
         }
