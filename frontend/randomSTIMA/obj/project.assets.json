@@ -115,19 +115,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Epata Tuah\\.nuget\\packages\\": {}
+    "C:\\Users\\HP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Kuliah\\Semester4\\TubesSTIMA2\\frontend\\randomSTIMA\\randomSTIMA.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Documents\\tubes-2-stima\\frontend\\randomSTIMA\\randomSTIMA.csproj",
       "projectName": "randomSTIMA",
-      "projectPath": "D:\\Kuliah\\Semester4\\TubesSTIMA2\\frontend\\randomSTIMA\\randomSTIMA.csproj",
-      "packagesPath": "C:\\Users\\Epata Tuah\\.nuget\\packages\\",
-      "outputPath": "D:\\Kuliah\\Semester4\\TubesSTIMA2\\frontend\\randomSTIMA\\obj\\",
+      "projectPath": "C:\\Users\\HP\\Documents\\tubes-2-stima\\frontend\\randomSTIMA\\randomSTIMA.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HP\\Documents\\tubes-2-stima\\frontend\\randomSTIMA\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Epata Tuah\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
