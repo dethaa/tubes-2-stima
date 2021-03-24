@@ -1,0 +1,13 @@
+12
+Alma Haley
+Alma John
+Alma Bob
+Haley John
+Haley Charlie
+Haley Diana
+Haley Michael
+John Charlie
+John Diana
+John Nicole
+Michael Nicole
+Michael Thomas
