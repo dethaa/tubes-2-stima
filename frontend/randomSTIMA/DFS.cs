@@ -24,10 +24,10 @@ namespace randomSTIMA
             return result;
         }
 
-        public static int getMaxMutualIdx(List<string> friends, string person){
+        public static int getMaxMutualIdx(List<Node> listNode, List<string> friends, string person){
             int idx = 0, mutuals = Utility.getMutualFriend(friends[0], person).Count;
-            for (i = 1; i < friends.Count; i++) {
-                if (Utility.getMutualFriend(friends[i], person).Count > mutuals) {
+            for (int i = 1; i < friends.Count; i++) {
+                if (Utility.getMutualFriend(listNode, friends[i], person).Count > mutuals) {
                     mutuals = Utility.getMutualFriend(friends[i], person).Count;
                     idx = i;
                 }
@@ -38,9 +38,11 @@ namespace randomSTIMA
 
         public static List<string> sortRecommend(List<string> friends, string person) 
         {
+            int idx;
             List<string> result = new List<string>;
             while (friends.Count > 0) {
-                result.Add(friends[getMaxMutualIdx(friends, person)]);
+                idx = getMaxMutualIdx(friends, person);
+                result.Add(friends[idx]);
                 friends.erase(vec.begin() + idx);
             }
 
