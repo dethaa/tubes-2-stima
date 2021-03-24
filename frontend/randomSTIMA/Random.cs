@@ -37,11 +37,30 @@ namespace randomSTIMA
             browse.Filter = "*.txt (file berekstensi txt)|*.txt";
             if (browse.ShowDialog()== DialogResult.OK)
             {
+                Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+                List<Control> removeLabel = this.Controls.OfType<Control>().ToList();
+                foreach (Control c in removeLabel)
+                {
+                    if (c.Name == "newLabel")
+                    {
+                        this.Controls.Remove(c);
+                        c.Dispose();
+                    }
+
+                }
+                label5.Text = "";
+                label12.Text = "";
+                radioButton1.Checked = false;
+                radioButton2.Checked = false;
+                comboBox1.SelectedIndex = -1;
+                comboBox2.SelectedIndex = -1;
                 inputAda = true;
                 filename = browse.SafeFileName;
                 label11.Text = filename;
                 inputTest = Input.inputToList(filename);
-               
+                List<List<string>> empty = new List<List<string>>();
+                List<List<string>> firstInput = Input.inputToListTuple(filename, empty);
+
                 nodeTest = Input.makeNodes(inputTest);
                 comboBox1.Items.Clear();
                 comboBox2.Items.Clear();
@@ -50,6 +69,14 @@ namespace randomSTIMA
                     comboBox1.Items.Add(node.getName());
                     comboBox2.Items.Add(node.getName());
                 }
+                
+
+                foreach (var arrayInput in firstInput)
+                {
+                    graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; 
+
+                }
+                gViewer1.Graph = graph;
 
             }
             
@@ -87,15 +114,17 @@ namespace randomSTIMA
 
                         foreach (var arrayInput in tupleInput)
                         {
-                            graph.AddEdge(arrayInput[0], arrayInput[1]);
+                            graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
 
                         }
                         foreach (var array in hasil)
                         {
-                            //graph.AddEdge(array[0], array[1]);
-                            graph.AddEdge(array[0], array[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
-                            graph.FindNode(array[0]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Yellow;
-                            graph.FindNode(array[1]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Yellow;
+                            
+                            Microsoft.Msagl.Drawing.Edge newEdge = graph.AddEdge(array[0], array[1]);
+                            newEdge.Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                            newEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                            graph.FindNode(array[0]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Turquoise;
+                            graph.FindNode(array[1]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Turquoise;
 
                         }
                         gViewer1.Graph = graph;
@@ -109,7 +138,7 @@ namespace randomSTIMA
 
                         foreach (var arrayInput in tupleInput)
                         {
-                            graph.AddEdge(arrayInput[0], arrayInput[1]);
+                            graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; ;
 
                         }
                         gViewer1.Graph = graph;
@@ -123,6 +152,7 @@ namespace randomSTIMA
                             }
 
                         }
+                        label12.Text = "";
                         label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
                     }
                 }
@@ -167,15 +197,16 @@ namespace randomSTIMA
 
                         foreach (var arrayInput in tupleInput)
                         {
-                            graph.AddEdge(arrayInput[0], arrayInput[1]);
+                            graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; ;
 
                         }
                         foreach (var array in hasil)
                         {
-                            //graph.AddEdge(array[0], array[1]);
-                            graph.AddEdge(array[0], array[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
-                            graph.FindNode(array[0]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Yellow;
-                            graph.FindNode(array[1]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Yellow;
+                            Microsoft.Msagl.Drawing.Edge newEdge = graph.AddEdge(array[0], array[1]);
+                            newEdge.Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                            newEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                            graph.FindNode(array[0]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Turquoise;
+                            graph.FindNode(array[1]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Turquoise;
 
                         }
                         gViewer1.Graph = graph;
@@ -189,7 +220,7 @@ namespace randomSTIMA
 
                         foreach (var arrayInput in tupleInput)
                         {
-                            graph.AddEdge(arrayInput[0], arrayInput[1]);
+                            graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; ;
 
                         }
                         gViewer1.Graph = graph;
@@ -203,6 +234,7 @@ namespace randomSTIMA
                             }
 
                         }
+                        label12.Text = "";
                         label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
                     }
                 }
@@ -216,8 +248,9 @@ namespace randomSTIMA
             if (comboBox1.SelectedIndex > -1)
             {
                 
-                int newLabelYPos = 499;
-              
+                int newLabelYPos = 95; 
+
+
                 label5.Text = "Friend Recommendations for " + comboBox1.GetItemText(comboBox1.SelectedItem) + " :";
                 List<string> recommendNode = new List<string>();
                 recommendNode = DFS.Recommend(nodeTest, comboBox1.GetItemText(comboBox1.SelectedItem));
@@ -240,7 +273,7 @@ namespace randomSTIMA
                     
                     newLabel = new Label();
                     newLabel.AutoSize = true;
-                    newLabel.Location = new System.Drawing.Point(66,newLabelYPos);
+                    newLabel.Location = new System.Drawing.Point(605,newLabelYPos); 
                     newLabel.Size = new System.Drawing.Size(31, 15);
                     newLabel.Name = "newLabel";
                     string mutual = " ";
@@ -272,6 +305,7 @@ namespace randomSTIMA
                         string selected2 = comboBox2.GetItemText(comboBox2.SelectedItem);
                         hasil = DFS.Explore(nodeTest, selected1, selected2);
                         
+
                         if (hasil.Count != 0)
                         {
                             List<string> hasilNonTuple = DFS.ExploreNotTuple(nodeTest, selected1, selected2);
@@ -290,18 +324,33 @@ namespace randomSTIMA
                             
 
                             tupleInput = Input.inputToListTuple(filename, hasil);
+                            foreach (var isi in tupleInput)
+                            {
+                                foreach (var isi2 in isi)
+                                {
+                                    comboBox1.Items.Add(isi2);
+                                }
+                            }
 
                             foreach (var arrayInput in tupleInput)
                             {
-                                graph.AddEdge(arrayInput[0], arrayInput[1]);
+                                graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; ;
 
+                            }
+                            foreach (var isi in hasil)
+                            {
+                                foreach (var isi2 in isi)
+                                {
+                                    comboBox2.Items.Add(isi2);
+                                }
                             }
                             foreach (var array in hasil)
                             {
-                                //graph.AddEdge(array[0], array[1]);
-                                graph.AddEdge(array[0], array[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
-                                graph.FindNode(array[0]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Yellow;
-                                graph.FindNode(array[1]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Yellow;
+                                Microsoft.Msagl.Drawing.Edge newEdge = graph.AddEdge(array[0], array[1]);
+                                newEdge.Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                                newEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                graph.FindNode(array[0]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Turquoise;
+                                graph.FindNode(array[1]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Turquoise;
 
                             }
                             gViewer1.Graph = graph;
@@ -315,7 +364,7 @@ namespace randomSTIMA
 
                             foreach (var arrayInput in tupleInput)
                             {
-                                graph.AddEdge(arrayInput[0], arrayInput[1]);
+                                graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; ;
 
                             }
                             gViewer1.Graph = graph;
@@ -329,6 +378,7 @@ namespace randomSTIMA
                                 }
 
                             }
+                            label12.Text = "";
                             label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
                         }
                         
@@ -360,15 +410,16 @@ namespace randomSTIMA
 
                             foreach (var arrayInput in tupleInput)
                             {
-                                graph.AddEdge(arrayInput[0], arrayInput[1]);
+                                graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; ;
 
                             }
                             foreach (var array in hasil)
                             {
-                                //graph.AddEdge(array[0], array[1]);
-                                graph.AddEdge(array[0], array[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
-                                graph.FindNode(array[0]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Yellow;
-                                graph.FindNode(array[1]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Yellow;
+                                Microsoft.Msagl.Drawing.Edge newEdge = graph.AddEdge(array[0], array[1]);
+                                newEdge.Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                                newEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                graph.FindNode(array[0]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Turquoise;
+                                graph.FindNode(array[1]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Turquoise;
 
                             }
                             gViewer1.Graph = graph;
@@ -382,7 +433,7 @@ namespace randomSTIMA
 
                             foreach (var arrayInput in tupleInput)
                             {
-                                graph.AddEdge(arrayInput[0], arrayInput[1]);
+                                graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; ;
 
                             }
                             gViewer1.Graph = graph;
@@ -396,6 +447,7 @@ namespace randomSTIMA
                                 }
 
                             }
+                            label12.Text = "";
                             label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
                         }
                     }
@@ -416,14 +468,14 @@ namespace randomSTIMA
               
                 if (comboBox1.SelectedIndex > -1)
                 {
-                    
-                    int newLabelYPos = 499;
+
+                    int newLabelYPos = 95; 
 
                     label5.Text = "Friend Recommendations for " + comboBox1.GetItemText(comboBox1.SelectedItem) + " :";
                     List<string> recommendNode = new List<string>();
                     recommendNode = DFS.Recommend(nodeTest, comboBox1.GetItemText(comboBox1.SelectedItem));
                     int recommendCount = recommendNode.Count;
-
+                  
                     List<Control> removeLabel = this.Controls.OfType<Control>().ToList();
                     foreach (Control c in removeLabel)
                     {
@@ -438,8 +490,8 @@ namespace randomSTIMA
                     {
 
                         newLabel = new Label();
-                        newLabel.AutoSize = true;
-                        newLabel.Location = new System.Drawing.Point(66, newLabelYPos);
+                        newLabel.AutoSize = true; 
+                        newLabel.Location = new System.Drawing.Point(605, newLabelYPos);
                         newLabel.Size = new System.Drawing.Size(31, 15);
                         newLabel.Name = "newLabel";
                         string mutual = " ";
@@ -466,6 +518,7 @@ namespace randomSTIMA
                         string selected1 = comboBox1.GetItemText(comboBox1.SelectedItem);
                         string selected2 = comboBox2.GetItemText(comboBox2.SelectedItem);
                         hasil = DFS.Explore(nodeTest, selected1, selected2);
+                        
                         if (hasil.Count != 0)
                         {
                             List<string> hasilNonTuple = DFS.ExploreNotTuple(nodeTest, selected1, selected2);
@@ -484,18 +537,33 @@ namespace randomSTIMA
 
 
                             tupleInput = Input.inputToListTuple(filename, hasil);
+                            foreach (var isi in tupleInput)
+                            {
+                                foreach (var isi2 in isi)
+                                {
+                                    comboBox1.Items.Add(isi2);
+                                }
+                            }
 
                             foreach (var arrayInput in tupleInput)
                             {
-                                graph.AddEdge(arrayInput[0], arrayInput[1]);
+                                graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; ;
 
+                            }
+                            foreach (var isi in hasil)
+                            {
+                                foreach (var isi2 in isi)
+                                {
+                                    comboBox2.Items.Add(isi2);
+                                }
                             }
                             foreach (var array in hasil)
                             {
-                                //graph.AddEdge(array[0], array[1]);
-                                graph.AddEdge(array[0], array[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
-                                graph.FindNode(array[0]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Yellow;
-                                graph.FindNode(array[1]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Yellow;
+                                Microsoft.Msagl.Drawing.Edge newEdge = graph.AddEdge(array[0], array[1]);
+                                newEdge.Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                                newEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                graph.FindNode(array[0]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Turquoise;
+                                graph.FindNode(array[1]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Turquoise;
 
                             }
                             gViewer1.Graph = graph;
@@ -509,7 +577,7 @@ namespace randomSTIMA
 
                             foreach (var arrayInput in tupleInput)
                             {
-                                graph.AddEdge(arrayInput[0], arrayInput[1]);
+                                graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; ;
 
                             }
                             gViewer1.Graph = graph;
@@ -523,6 +591,7 @@ namespace randomSTIMA
                                 }
 
                             }
+                            label12.Text = "";
                             label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
                         }
                     }
@@ -553,15 +622,16 @@ namespace randomSTIMA
 
                             foreach (var arrayInput in tupleInput)
                             {
-                                graph.AddEdge(arrayInput[0], arrayInput[1]);
+                                graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; ;
 
                             }
                             foreach (var array in hasil)
                             {
-                                //graph.AddEdge(array[0], array[1]);
-                                graph.AddEdge(array[0], array[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
-                                graph.FindNode(array[0]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Yellow;
-                                graph.FindNode(array[1]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Yellow;
+                                Microsoft.Msagl.Drawing.Edge newEdge = graph.AddEdge(array[0], array[1]);
+                                newEdge.Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                                newEdge.Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                graph.FindNode(array[0]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Turquoise;
+                                graph.FindNode(array[1]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Turquoise;
 
                             }
                             gViewer1.Graph = graph;
@@ -575,7 +645,7 @@ namespace randomSTIMA
 
                             foreach (var arrayInput in tupleInput)
                             {
-                                graph.AddEdge(arrayInput[0], arrayInput[1]);
+                                graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; ;
 
                             }
                             gViewer1.Graph = graph;
@@ -589,6 +659,7 @@ namespace randomSTIMA
                                 }
 
                             }
+                            label12.Text = "";
                             label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
                         }
                     }
@@ -665,6 +736,16 @@ namespace randomSTIMA
         }
 
         private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click_1(object sender, EventArgs e)
         {
 
         }

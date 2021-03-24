@@ -25,28 +25,28 @@ namespace randomSTIMA
         }
 
         public static int getMaxMutualIdx(List<Node> listNode, List<string> friends, string person){
-            int idx = 0, mutuals = Utility.getMutualFriend(friends[0], person).Count;
+            int idx = 0, mutuals = Utility.getMutualFriend(listNode,friends[0], person).Count;
             for (int i = 1; i < friends.Count; i++) {
                 if (Utility.getMutualFriend(listNode, friends[i], person).Count > mutuals) {
-                    mutuals = Utility.getMutualFriend(friends[i], person).Count;
+                    mutuals = Utility.getMutualFriend(listNode,friends[i], person).Count;
                     idx = i;
                 }
             }
 
-            return i;
+            return idx;
         }
 
-        public static List<string> sortRecommend(List<string> friends, string person) 
+        public static List<string> sortRecommend(List<Node> listNode,List<string> friends, string person) 
         {
             int idx;
-            List<string> result = new List<string>;
+            List<string> result = new List<string>();
             while (friends.Count > 0) {
-                idx = getMaxMutualIdx(friends, person);
+                idx = getMaxMutualIdx(listNode, friends, person);
                 result.Add(friends[idx]);
-                friends.erase(vec.begin() + idx);
+                friends.RemoveAt(idx);
             }
 
-            return friends;
+            return result;
         }
 
         public static List<string> Recommend(List<Node> listNode, string person)
@@ -69,7 +69,7 @@ namespace randomSTIMA
             }
 
             Utility.resetStatus(listNode);
-            return sortRecommend(newFriends, person);
+            return sortRecommend(listNode,newFriends, person);
         }
 
         public static List<List<string>> Explore(List<Node> listNode, string person, string friend)

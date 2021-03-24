@@ -61,7 +61,7 @@ namespace randomSTIMA
                
                 foreach (var array in nodeHasil)
                 {
-                    if (array[0]==strList[0] && array[1]==strList[1])
+                    if ((array[0]==strList[0] && array[1]==strList[1]) || (array[0]==strList[1] && array[1]==strList[0]))
                     {
                        ketemu = true;
                         
