@@ -23,6 +23,30 @@ namespace randomSTIMA
 
             return result;
         }
+
+        public static int getMaxMutualIdx(List<string> friends, string person){
+            int idx = 0, mutuals = Utility.getMutualFriend(friends[0], person).Count;
+            for (i = 1; i < friends.Count; i++) {
+                if (Utility.getMutualFriend(friends[i], person).Count > mutuals) {
+                    mutuals = Utility.getMutualFriend(friends[i], person).Count;
+                    idx = i;
+                }
+            }
+
+            return i;
+        }
+
+        public static List<string> sortRecommend(List<string> friends, string person) 
+        {
+            List<string> result = new List<string>;
+            while (friends.Count > 0) {
+                result.Add(friends[getMaxMutualIdx(friends, person)]);
+                friends.erase(vec.begin() + idx);
+            }
+
+            return friends;
+        }
+
         public static List<string> Recommend(List<Node> listNode, string person)
         {
             Node personNode = Utility.searchNode(listNode, person);
@@ -43,7 +67,7 @@ namespace randomSTIMA
             }
 
             Utility.resetStatus(listNode);
-            return newFriends;
+            return sortRecommend(newFriends, person);
         }
 
         public static List<List<string>> Explore(List<Node> listNode, string person, string friend)
