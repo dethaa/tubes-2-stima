@@ -86,5 +86,46 @@ namespace randomSTIMA
             result.Reverse();
             return Utility.createRelationTuple(result);
         }
+        public static List<string> ExploreNotTuple(List<Node> listNode, string person, string friend)
+        {
+            Node temp = Utility.searchNode(listNode, person);
+            Stack stack = new Stack();
+
+            string garbage;
+            string adj = person;
+            List<string> result = new List<string>();
+
+            stack.Push(adj);
+            listNode[Utility.getNodeIdx(listNode, person)].hasVisited();
+            while (stack.Top() != friend && !Utility.isAllVisited(listNode) && !stack.isEmpty())
+            {
+                if (temp.getPriorityAdj(listNode) == "NULL")
+                {
+                    garbage = stack.Pop();
+                    temp = Utility.searchNode(listNode, stack.Top());
+                }
+                else
+                {
+                    adj = temp.getPriorityAdj(listNode);
+                    temp = Utility.searchNode(listNode, adj);
+                    listNode[Utility.getNodeIdx(listNode, temp.getName())].hasVisited();
+                    stack.Push(adj);
+                }
+
+            }
+
+            if (stack.Top() == friend)
+            {
+                while (!stack.isEmpty())
+                {
+                    result.Add(stack.Pop());
+                }
+
+            }
+
+            Utility.resetStatus(listNode);
+            result.Reverse();
+            return result;
+        }
     }
 }

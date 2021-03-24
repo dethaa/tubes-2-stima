@@ -45,6 +45,40 @@ namespace randomSTIMA
             return listAll;
         }
 
+        public static List<List<string>> inputToListTuple(string fileName, List<List<string>> nodeHasil)
+        {
+            int i;
+            
+            string[] lines = System.IO.File.ReadAllLines(fileName);
+            int count = Int32.Parse(lines[0]);
+            List<List<string>> listAll = new List<List<string>>();
+
+            for (i = 1; i <= count; i++)
+            {
+                bool ketemu = false;
+                string[] strArr = lines[i].Split(' ');
+                List<string> strList = strArr.ToList();
+               
+                foreach (var array in nodeHasil)
+                {
+                    if (array[0]==strList[0] && array[1]==strList[1])
+                    {
+                       ketemu = true;
+                        
+                    }
+                }
+                if (ketemu)
+                {
+                    continue;
+                } else
+                {
+                    listAll.Add(strList);
+                }
+                
+            }
+            return listAll;
+        }
+
         // membuat list of nodes
         public static List<Node> makeNodes(List<List<string>> listAdj)
         {
@@ -63,6 +97,47 @@ namespace randomSTIMA
             return result;
 
         }
+
+        public static List<Node> makeNodesExceptCurrAccount(List<List<string>> listAdj, string account)
+        {
+            List<Node> result = new List<Node>();
+            foreach (var nodes in listAdj)
+            {
+                if (nodes[0] == account)
+                {
+                    continue;
+                } else
+                {
+                    Node temp = new Node(nodes[0]);
+                    for (int i = 1; i < nodes.Count; i++)
+                    {
+                        temp.addNewAdj(nodes[i]);
+                    }
+                    temp.sortAdj();
+                    result.Add(temp);
+                }
+                
+            }
+
+
+
+            return result;
+
+        }
+
+        // return Node dengan menggunakan string
+        public static Node getNode(string namaNode, List<Node> node)
+        {
+            foreach (var nodeName in node)
+            {
+                if (nodeName.getName() == namaNode)
+                {
+                    return nodeName;
+                }
+            }
+            return node[0];
+        }
+       
 
     }
 }

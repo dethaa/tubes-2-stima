@@ -6,9 +6,8 @@
       "version": "5.0.0"
     },
     "additionalProbingPaths": [
-      "C:\\Users\\SuperNova\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\SuperNova\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      "C:\\Users\\Epata Tuah\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Epata Tuah\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

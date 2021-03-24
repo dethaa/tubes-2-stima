@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nyobadewe
+namespace randomSTIMA
 {
     class Utility
     {
@@ -200,5 +200,24 @@ namespace nyobadewe
             return result;
         }
 
+        public static string numberOrder(int number)
+        {
+            if (number-1==0 || ((number - 1) % 10) == 0)
+            {
+                return "st";
+            }
+            else if (number-2==0 || ((number - 2) % 10) == 0)
+            {
+                return "nd";
+            }
+            else if (number-3==0 || ((number - 3) % 10) == 0)
+            {
+                return "rd";
+            }
+            else
+            {
+                return "th";
+            }
+        }
     }
 }

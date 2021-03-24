@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\UserData\\SuperNova\\Documents\\tubes\\stima\\tubes-2-stima\\frontend\\randomSTIMA\\randomSTIMA.csproj": {}
+    "D:\\Kuliah\\Semester4\\TubesSTIMA2\\frontend\\randomSTIMA\\randomSTIMA.csproj": {}
   },
   "projects": {
-    "D:\\UserData\\SuperNova\\Documents\\tubes\\stima\\tubes-2-stima\\frontend\\randomSTIMA\\randomSTIMA.csproj": {
+    "D:\\Kuliah\\Semester4\\TubesSTIMA2\\frontend\\randomSTIMA\\randomSTIMA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\UserData\\SuperNova\\Documents\\tubes\\stima\\tubes-2-stima\\frontend\\randomSTIMA\\randomSTIMA.csproj",
+        "projectUniqueName": "D:\\Kuliah\\Semester4\\TubesSTIMA2\\frontend\\randomSTIMA\\randomSTIMA.csproj",
         "projectName": "randomSTIMA",
-        "projectPath": "D:\\UserData\\SuperNova\\Documents\\tubes\\stima\\tubes-2-stima\\frontend\\randomSTIMA\\randomSTIMA.csproj",
-        "packagesPath": "C:\\Users\\SuperNova\\.nuget\\packages\\",
-        "outputPath": "D:\\UserData\\SuperNova\\Documents\\tubes\\stima\\tubes-2-stima\\frontend\\randomSTIMA\\obj\\",
+        "projectPath": "D:\\Kuliah\\Semester4\\TubesSTIMA2\\frontend\\randomSTIMA\\randomSTIMA.csproj",
+        "packagesPath": "C:\\Users\\Epata Tuah\\.nuget\\packages\\",
+        "outputPath": "D:\\Kuliah\\Semester4\\TubesSTIMA2\\frontend\\randomSTIMA\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\SuperNova\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Epata Tuah\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nyobadewe
+namespace randomSTIMA
 {
     public class Node
     {
@@ -57,7 +57,7 @@ namespace nyobadewe
         public int getNumAdj() { return numAdj; }
         public bool isVisited() { return visited; }
         public string getParent() { return parent; }
-
+        
         // methods
         public void sortAdj() { this.adj.Sort(); }
 

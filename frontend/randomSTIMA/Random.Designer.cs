@@ -29,6 +29,7 @@ namespace randomSTIMA
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Random));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,7 +38,6 @@ namespace randomSTIMA
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
@@ -45,7 +45,9 @@ namespace randomSTIMA
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.label11 = new System.Windows.Forms.Label();
+            this.gViewer1 = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            this.label12 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -71,7 +73,7 @@ namespace randomSTIMA
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(82, 324);
+            this.label3.Location = new System.Drawing.Point(110, 446);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(111, 15);
             this.label3.TabIndex = 3;
@@ -80,7 +82,7 @@ namespace randomSTIMA
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(82, 293);
+            this.label4.Location = new System.Drawing.Point(110, 415);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 15);
             this.label4.TabIndex = 2;
@@ -90,22 +92,16 @@ namespace randomSTIMA
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(38, 352);
+            this.label5.Location = new System.Drawing.Point(66, 474);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(164, 15);
+            this.label5.Size = new System.Drawing.Size(0, 15);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Friends Recommendation for ";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Ikan Goreng",
-            "Ayam Goreng",
-            "Itik Goreng",
-            "Sapi Goreng"});
-            this.comboBox1.Location = new System.Drawing.Point(240, 290);
+            this.comboBox1.Location = new System.Drawing.Point(268, 412);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 23);
             this.comboBox1.TabIndex = 5;
@@ -114,10 +110,11 @@ namespace randomSTIMA
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(240, 325);
+            this.comboBox2.Location = new System.Drawing.Point(268, 447);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 23);
             this.comboBox2.TabIndex = 6;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -127,14 +124,7 @@ namespace randomSTIMA
             this.button1.TabIndex = 7;
             this.button1.Text = "Browse";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(82, 140);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(324, 130);
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // radioButton1
             // 
@@ -146,6 +136,7 @@ namespace randomSTIMA
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "DFS";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -192,7 +183,7 @@ namespace randomSTIMA
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(224, 293);
+            this.label9.Location = new System.Drawing.Point(252, 415);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(10, 15);
             this.label9.TabIndex = 15;
@@ -201,17 +192,77 @@ namespace randomSTIMA
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(224, 324);
+            this.label10.Location = new System.Drawing.Point(252, 446);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(10, 15);
             this.label10.TabIndex = 16;
             this.label10.Text = ":";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(332, 75);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(0, 15);
+            this.label11.TabIndex = 17;
+            this.label11.Click += new System.EventHandler(this.label11_Click);
+            // 
+            // gViewer1
+            // 
+            this.gViewer1.ArrowheadLength = 10D;
+            this.gViewer1.AsyncLayout = false;
+            this.gViewer1.AutoScroll = true;
+            this.gViewer1.BackwardEnabled = false;
+            this.gViewer1.BuildHitTree = true;
+            this.gViewer1.CurrentLayoutMethod = Microsoft.Msagl.GraphViewerGdi.LayoutMethod.UseSettingsOfTheGraph;
+            this.gViewer1.EdgeInsertButtonVisible = true;
+            this.gViewer1.FileName = "";
+            this.gViewer1.ForwardEnabled = false;
+            this.gViewer1.Graph = null;
+            this.gViewer1.InsertingEdge = false;
+            this.gViewer1.LayoutAlgorithmSettingsButtonVisible = true;
+            this.gViewer1.LayoutEditingEnabled = true;
+            this.gViewer1.Location = new System.Drawing.Point(91, 131);
+            this.gViewer1.LooseOffsetForRouting = 0.25D;
+            this.gViewer1.MouseHitDistance = 0.05D;
+            this.gViewer1.Name = "gViewer1";
+            this.gViewer1.NavigationVisible = true;
+            this.gViewer1.NeedToCalculateLayout = true;
+            this.gViewer1.OffsetForRelaxingInRouting = 0.6D;
+            this.gViewer1.PaddingForEdgeRouting = 8D;
+            this.gViewer1.PanButtonPressed = false;
+            this.gViewer1.SaveAsImageEnabled = true;
+            this.gViewer1.SaveAsMsaglEnabled = true;
+            this.gViewer1.SaveButtonVisible = true;
+            this.gViewer1.SaveGraphButtonVisible = true;
+            this.gViewer1.SaveInVectorFormatEnabled = true;
+            this.gViewer1.Size = new System.Drawing.Size(333, 270);
+            this.gViewer1.TabIndex = 20;
+            this.gViewer1.TightOffsetForRouting = 0.125D;
+            this.gViewer1.ToolBarIsVisible = true;
+            this.gViewer1.Transform = ((Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation)(resources.GetObject("gViewer1.Transform")));
+            this.gViewer1.UndoRedoButtonsVisible = true;
+            this.gViewer1.WindowZoomButtonPressed = false;
+            this.gViewer1.ZoomF = 1D;
+            this.gViewer1.ZoomWindowThreshold = 0.05D;
+            this.gViewer1.Load += new System.EventHandler(this.gViewer1_Load);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(268, 474);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(0, 15);
+            this.label12.TabIndex = 21;
+            // 
             // Random
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 450);
+            this.ClientSize = new System.Drawing.Size(519, 660);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.gViewer1);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -219,7 +270,6 @@ namespace randomSTIMA
             this.Controls.Add(this.label6);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
@@ -231,7 +281,6 @@ namespace randomSTIMA
             this.Name = "Random";
             this.Text = "Random";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,7 +296,6 @@ namespace randomSTIMA
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Label label6;
@@ -255,6 +303,9 @@ namespace randomSTIMA
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private Microsoft.Msagl.GraphViewerGdi.GViewer gViewer1;
+        private System.Windows.Forms.Label label12;
     }
 }
 
