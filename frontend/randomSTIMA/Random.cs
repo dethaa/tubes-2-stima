@@ -49,6 +49,7 @@ namespace randomSTIMA
 
                 }
                 //clear label, radioButton, dan comboBox jika ada yang dipilih/ditampilkan sebelumnya
+                label1.Text = "";
                 label5.Text = "";
                 label12.Text = "";
                 radioButton1.Checked = false;
@@ -170,6 +171,7 @@ namespace randomSTIMA
                             }
 
                         }
+                        label1.Text = "";
                         label12.Text = "";
                         label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
                     }
@@ -267,6 +269,7 @@ namespace randomSTIMA
                             }
 
                         }
+                        label1.Text = "";
                         label12.Text = "";
                         label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
                     }
@@ -382,13 +385,7 @@ namespace randomSTIMA
                                 graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; ;
 
                             }
-                            foreach (var isi in hasil)
-                            {
-                                foreach (var isi2 in isi)
-                                {
-                                    comboBox2.Items.Add(isi2);
-                                }
-                            }
+                            
                             foreach (var array in hasil)
                             {
                                 Microsoft.Msagl.Drawing.Edge newEdge = graph.AddEdge(array[0], array[1]);
@@ -423,6 +420,7 @@ namespace randomSTIMA
                                 }
 
                             }
+                            label1.Text = "";
                             label12.Text = "";
                             label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
                         }
@@ -486,6 +484,7 @@ namespace randomSTIMA
                         }
                         else
                         {
+                            
                             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
 
 
@@ -508,6 +507,7 @@ namespace randomSTIMA
 
                             }
                             label12.Text = "";
+                            label1.Text = "";
                             label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
                         }
                     }
@@ -619,13 +619,7 @@ namespace randomSTIMA
 
 
                             tupleInput = Input.inputToListTuple(filename, hasil);
-                            foreach (var isi in tupleInput)
-                            {
-                                foreach (var isi2 in isi)
-                                {
-                                    comboBox1.Items.Add(isi2);
-                                }
-                            }
+                            
 
                             foreach (var arrayInput in tupleInput)
                             {
@@ -667,6 +661,7 @@ namespace randomSTIMA
                                 }
 
                             }
+                            label1.Text = "";
                             label12.Text = "";
                             label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
                         }
@@ -750,6 +745,7 @@ namespace randomSTIMA
                                 }
 
                             }
+                            label1.Text = "";
                             label12.Text = "";
                             label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
                         }
