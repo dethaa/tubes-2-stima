@@ -1,0 +1,9 @@
+C:\Users\Epata Tuah\Desktop\toal\randomSTIMA.exe
+C:\Users\Epata Tuah\Desktop\toal\randomSTIMA.dll
+C:\Users\Epata Tuah\Desktop\toal\randomSTIMA.deps.json
+C:\Users\Epata Tuah\Desktop\toal\randomSTIMA.runtimeconfig.json
+C:\Users\Epata Tuah\Desktop\toal\randomSTIMA.pdb
+C:\Users\Epata Tuah\Desktop\toal\AutomaticGraphLayout.dll
+C:\Users\Epata Tuah\Desktop\toal\AutomaticGraphLayout.Drawing.dll
+C:\Users\Epata Tuah\Desktop\toal\Microsoft.Msagl.GraphViewerGdi.dll
+C:\Users\Epata Tuah\Desktop\toal\Microsoft.Msagl.WpfGraphControl.dll
