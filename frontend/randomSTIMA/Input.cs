@@ -45,6 +45,7 @@ namespace randomSTIMA
             return listAll;
         }
 
+        //input tuple tanpa node hasil
         public static List<List<string>> inputToListTuple(string fileName, List<List<string>> nodeHasil)
         {
             int i;

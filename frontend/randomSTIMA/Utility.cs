@@ -200,6 +200,7 @@ namespace randomSTIMA
             return result;
         }
 
+        //menampilkan st/nd/rd/th sesuai syarat number order di bahasa inggris
         public static string numberOrder(int number)
         {
             if (number-1==0 || ((number - 1) % 10) == 0)

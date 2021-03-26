@@ -1,0 +1,9 @@
+D:\Kuliah\Semester4\TubesSTIMA2\frontend\randomSTIMA\bin\Release\net5.0-windows\publish\randomSTIMA.exe
+D:\Kuliah\Semester4\TubesSTIMA2\frontend\randomSTIMA\bin\Release\net5.0-windows\publish\randomSTIMA.dll
+D:\Kuliah\Semester4\TubesSTIMA2\frontend\randomSTIMA\bin\Release\net5.0-windows\publish\randomSTIMA.deps.json
+D:\Kuliah\Semester4\TubesSTIMA2\frontend\randomSTIMA\bin\Release\net5.0-windows\publish\randomSTIMA.runtimeconfig.json
+D:\Kuliah\Semester4\TubesSTIMA2\frontend\randomSTIMA\bin\Release\net5.0-windows\publish\randomSTIMA.pdb
+D:\Kuliah\Semester4\TubesSTIMA2\frontend\randomSTIMA\bin\Release\net5.0-windows\publish\AutomaticGraphLayout.dll
+D:\Kuliah\Semester4\TubesSTIMA2\frontend\randomSTIMA\bin\Release\net5.0-windows\publish\AutomaticGraphLayout.Drawing.dll
+D:\Kuliah\Semester4\TubesSTIMA2\frontend\randomSTIMA\bin\Release\net5.0-windows\publish\Microsoft.Msagl.GraphViewerGdi.dll
+D:\Kuliah\Semester4\TubesSTIMA2\frontend\randomSTIMA\bin\Release\net5.0-windows\publish\Microsoft.Msagl.WpfGraphControl.dll

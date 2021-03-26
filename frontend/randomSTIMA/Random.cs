@@ -48,6 +48,7 @@ namespace randomSTIMA
                     }
 
                 }
+                //clear label, radioButton, dan comboBox jika ada yang dipilih/ditampilkan sebelumnya
                 label5.Text = "";
                 label12.Text = "";
                 radioButton1.Checked = false;
@@ -64,13 +65,14 @@ namespace randomSTIMA
                 nodeTest = Input.makeNodes(inputTest);
                 comboBox1.Items.Clear();
                 comboBox2.Items.Clear();
+                //isi comboBox1 (Choose Account) dan comboBox2 (Explore friends with) dengan isi nodeTest
                 foreach (var node in nodeTest)
                 {
                     comboBox1.Items.Add(node.getName());
                     comboBox2.Items.Add(node.getName());
                 }
                 
-
+                //Tampilkan graf awal
                 foreach (var arrayInput in firstInput)
                 {
                     graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; 
@@ -85,10 +87,13 @@ namespace randomSTIMA
         //DFS Button
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            //cek apakah radioButton DFS dipilih
             if (radioButton1.Checked && inputAda==true)
             {
+                //cek apakah combobox choose account dan explore friends with dipilih
                 if (comboBox1.SelectedIndex > -1 && comboBox2.SelectedIndex > -1)
                 {
+                    //output berupa jalur koneksi dalam bentuk visualisasi graf, jalur (path), dan derajat koneksinya. hasil didapat dengan algoritma DFS
                     string selected1 = comboBox1.GetItemText(comboBox1.SelectedItem);
                     string selected2 = comboBox2.GetItemText(comboBox2.SelectedItem);
                     hasil = DFS.Explore(nodeTest, selected1, selected2);
@@ -96,6 +101,19 @@ namespace randomSTIMA
                     if (hasil.Count != 0)
                     {
                         List<string> hasilNonTuple = DFS.ExploreNotTuple(nodeTest, selected1, selected2);
+                        string algoPath = "";
+                        int countIsiHasilNonTuple = 0;
+                        foreach (var isi in hasilNonTuple)
+                        {
+                            algoPath += isi;
+                            countIsiHasilNonTuple += 1;
+                            if (countIsiHasilNonTuple != hasilNonTuple.Count)
+                            {
+                                algoPath += " -> ";
+                            }
+
+                        }
+                        label1.Text = algoPath;
                         int degree = hasilNonTuple.Count - 2;
                         if (degree == 0)
                         {
@@ -167,18 +185,33 @@ namespace randomSTIMA
         //BFS Button
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
+            //cek apakah radioButton BFS dipilih
             if (radioButton2.Checked && inputAda == true)
             {
-                
+                //cek apakah combobox choose account dan explore friends with dipilih
                 if (comboBox1.SelectedIndex > -1 && comboBox2.SelectedIndex > -1)
                 {
-
+                    //output berupa jalur koneksi dalam bentuk visualisasi graf, jalur (path), dan derajat koneksinya. hasil didapat dengan algoritma DFS
                     string selected1 = comboBox1.GetItemText(comboBox1.SelectedItem);
                     string selected2 = comboBox2.GetItemText(comboBox2.SelectedItem);
                     hasil = BFS.Explore(nodeTest, selected1, selected2);
                     if (hasil.Count != 0)
                     {
                         List<string> hasilNonTuple = BFS.ExploreNotTuple(nodeTest, selected1, selected2);
+                        string algoPath = "";
+                        int countIsiHasilNonTuple = 0;
+                        foreach (var isi in hasilNonTuple)
+                        {
+                            algoPath += isi;
+                            countIsiHasilNonTuple += 1;
+                            if (countIsiHasilNonTuple != hasilNonTuple.Count)
+                            {
+                                algoPath += " -> ";
+                            }
+
+                        }
+                        label1.Text = algoPath;
+                        
                         int degree = hasilNonTuple.Count - 2;
                         if (degree == 0)
                         {
@@ -245,18 +278,20 @@ namespace randomSTIMA
         //Choose Account
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Cek apakah comboBox "Choose Account" sudah diceklis
             if (comboBox1.SelectedIndex > -1)
             {
-                
+                //Posisi Y friend recommendation pertama
                 int newLabelYPos = 95; 
 
-
+                //Inisialisasi output friend recommendation
                 label5.Text = "Friend Recommendations for " + comboBox1.GetItemText(comboBox1.SelectedItem) + " :";
                 List<string> recommendNode = new List<string>();
                 recommendNode = DFS.Recommend(nodeTest, comboBox1.GetItemText(comboBox1.SelectedItem));
-
                 int recommendCount = recommendNode.Count;
 
+                
+                //Hapus label friend recommendation yang dahulu jika ada
                 List<Control> removeLabel = this.Controls.OfType<Control>().ToList();
                 foreach(Control c in removeLabel)
                 {
@@ -268,6 +303,7 @@ namespace randomSTIMA
                     
                 }
                
+                 //Output friend recommendation untuk combobox Choose Account yang dipilih
                 for (int i=0; i<recommendCount; i++)
                 {
                     
@@ -296,9 +332,10 @@ namespace randomSTIMA
                     newLabelYPos += 40;
                 }
 
+                //Cek apakah comboBox "Explore friends with" sudah diceklis
                 if (comboBox2.SelectedIndex > -1)
                 {
-
+                    //Jika memilih radioButton DFS, output berupa jalur koneksi dalam bentuk visualisasi graf, jalur (path), dan derajat koneksinya. hasil didapat dengan algoritma DFS
                     if (radioButton1.Checked)
                     {
                         string selected1 = comboBox1.GetItemText(comboBox1.SelectedItem);
@@ -309,6 +346,20 @@ namespace randomSTIMA
                         if (hasil.Count != 0)
                         {
                             List<string> hasilNonTuple = DFS.ExploreNotTuple(nodeTest, selected1, selected2);
+                            string algoPath = "";
+                            int countIsiHasilNonTuple = 0;
+                            foreach (var isi in hasilNonTuple)
+                            {
+                                algoPath += isi;
+                                countIsiHasilNonTuple += 1;
+                                if (countIsiHasilNonTuple != hasilNonTuple.Count)
+                                {
+                                    algoPath += " -> ";
+                                }
+
+                            }
+                            label1.Text = algoPath;
+
                             int degree = hasilNonTuple.Count - 2;
                             if (degree == 0)
                             {
@@ -324,13 +375,7 @@ namespace randomSTIMA
                             
 
                             tupleInput = Input.inputToListTuple(filename, hasil);
-                            foreach (var isi in tupleInput)
-                            {
-                                foreach (var isi2 in isi)
-                                {
-                                    comboBox1.Items.Add(isi2);
-                                }
-                            }
+                            
 
                             foreach (var arrayInput in tupleInput)
                             {
@@ -384,6 +429,7 @@ namespace randomSTIMA
                         
                     }
 
+                    //Jika memilih radioButton BFS, output berupa jalur koneksi dalam bentuk visualisasi graf, jalur (path), dan derajat koneksinya. hasil didapat dengan algoritma BFS
                     if (radioButton2.Checked)
                     {
                         string selected1 = comboBox1.GetItemText(comboBox1.SelectedItem);
@@ -392,6 +438,20 @@ namespace randomSTIMA
                         if (hasil.Count != 0)
                         {
                             List<string> hasilNonTuple = BFS.ExploreNotTuple(nodeTest, selected1, selected2);
+                            string algoPath = "";
+                            int countIsiHasilNonTuple = 0;
+                            foreach (var isi in hasilNonTuple)
+                            {
+                                algoPath += isi;
+                                countIsiHasilNonTuple += 1;
+                                if (countIsiHasilNonTuple != hasilNonTuple.Count)
+                                {
+                                    algoPath += " -> ";
+                                }
+
+                            }
+                            label1.Text = algoPath;
+
                             int degree = hasilNonTuple.Count - 2;
                             if (degree == 0)
                             {
@@ -463,19 +523,23 @@ namespace randomSTIMA
         //Explore friends with
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Cek apakah comboBox "Explore friends with" sudah diceklis
             if (comboBox2.SelectedIndex > -1)
             {
-              
+                //Cek apakah comboBox "Choose Account" sudah diceklis
                 if (comboBox1.SelectedIndex > -1)
                 {
-
+                    //Posisi Y friend recommendation pertama
                     int newLabelYPos = 95; 
 
+                    //Inisialisasi output friend recommendation
                     label5.Text = "Friend Recommendations for " + comboBox1.GetItemText(comboBox1.SelectedItem) + " :";
                     List<string> recommendNode = new List<string>();
                     recommendNode = DFS.Recommend(nodeTest, comboBox1.GetItemText(comboBox1.SelectedItem));
                     int recommendCount = recommendNode.Count;
-                  
+
+
+                    //Hapus label friend recommendation yang dahulu jika ada
                     List<Control> removeLabel = this.Controls.OfType<Control>().ToList();
                     foreach (Control c in removeLabel)
                     {
@@ -486,6 +550,8 @@ namespace randomSTIMA
                         }
 
                     }
+
+                    //Output friend recommendation untuk combobox Choose Account yang dipilih
                     for (int i = 0; i < recommendCount; i++)
                     {
 
@@ -513,6 +579,8 @@ namespace randomSTIMA
 
                         newLabelYPos += 40;
                     }
+
+                    //Jika memilih radioButton DFS, output berupa jalur koneksi dalam bentuk visualisasi graf, jalur (path), dan derajat koneksinya. hasil didapat dengan algoritma DFS
                     if (radioButton1.Checked)
                     {
                         string selected1 = comboBox1.GetItemText(comboBox1.SelectedItem);
@@ -522,6 +590,20 @@ namespace randomSTIMA
                         if (hasil.Count != 0)
                         {
                             List<string> hasilNonTuple = DFS.ExploreNotTuple(nodeTest, selected1, selected2);
+                            string algoPath = "";
+                            int countIsiHasilNonTuple = 0;
+                            foreach (var isi in hasilNonTuple)
+                            {
+                                algoPath += isi;
+                                countIsiHasilNonTuple += 1;
+                                if (countIsiHasilNonTuple != hasilNonTuple.Count)
+                                {
+                                    algoPath += " -> ";
+                                }
+
+                            }
+                            label1.Text = algoPath;
+
                             int degree = hasilNonTuple.Count - 2;
                             if (degree == 0)
                             {
@@ -550,13 +632,7 @@ namespace randomSTIMA
                                 graph.AddEdge(arrayInput[0], arrayInput[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None; ;
 
                             }
-                            foreach (var isi in hasil)
-                            {
-                                foreach (var isi2 in isi)
-                                {
-                                    comboBox2.Items.Add(isi2);
-                                }
-                            }
+                           
                             foreach (var array in hasil)
                             {
                                 Microsoft.Msagl.Drawing.Edge newEdge = graph.AddEdge(array[0], array[1]);
@@ -596,6 +672,7 @@ namespace randomSTIMA
                         }
                     }
 
+                    //Jika memilih radioButton BFS, output berupa jalur koneksi dalam bentuk visualisasi graf, jalur (path), dan derajat koneksinya. hasil didapat dengan algoritma BFS
                     if (radioButton2.Checked)
                     {
                         string selected1 = comboBox1.GetItemText(comboBox1.SelectedItem);
@@ -604,6 +681,20 @@ namespace randomSTIMA
                         if (hasil.Count != 0)
                         {
                             List<string> hasilNonTuple = BFS.ExploreNotTuple(nodeTest, selected1, selected2);
+                            string algoPath = "";
+                            int countIsiHasilNonTuple = 0;
+                            foreach (var isi in hasilNonTuple)
+                            {
+                                algoPath += isi;
+                                countIsiHasilNonTuple += 1;
+                                if (countIsiHasilNonTuple != hasilNonTuple.Count)
+                                {
+                                    algoPath += " -> ";
+                                }
+
+                            }
+                            label1.Text = algoPath;
+
                             int degree = hasilNonTuple.Count - 2;
                             if (degree == 0)
                             {
