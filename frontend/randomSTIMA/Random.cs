@@ -33,7 +33,7 @@ namespace randomSTIMA
         //Browse
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            string onlyFileName;
             browse.Filter = "*.txt (file berekstensi txt)|*.txt";
             if (browse.ShowDialog()== DialogResult.OK)
             {
@@ -49,7 +49,7 @@ namespace randomSTIMA
 
                 }
                 //clear label, radioButton, dan comboBox jika ada yang dipilih/ditampilkan sebelumnya
-                label1.Text = "";
+                
                 label5.Text = "";
                 label12.Text = "";
                 radioButton1.Checked = false;
@@ -57,8 +57,9 @@ namespace randomSTIMA
                 comboBox1.SelectedIndex = -1;
                 comboBox2.SelectedIndex = -1;
                 inputAda = true;
-                filename = browse.SafeFileName;
-                label11.Text = filename;
+                filename = browse.FileName;
+                onlyFileName = browse.SafeFileName;
+                label11.Text = onlyFileName;
                 inputTest = Input.inputToList(filename);
                 List<List<string>> empty = new List<List<string>>();
                 List<List<string>> firstInput = Input.inputToListTuple(filename, empty);
@@ -102,19 +103,7 @@ namespace randomSTIMA
                     if (hasil.Count != 0)
                     {
                         List<string> hasilNonTuple = DFS.ExploreNotTuple(nodeTest, selected1, selected2);
-                        string algoPath = "";
-                        int countIsiHasilNonTuple = 0;
-                        foreach (var isi in hasilNonTuple)
-                        {
-                            algoPath += isi;
-                            countIsiHasilNonTuple += 1;
-                            if (countIsiHasilNonTuple != hasilNonTuple.Count)
-                            {
-                                algoPath += " -> ";
-                            }
-
-                        }
-                        label1.Text = algoPath;
+                        
                         int degree = hasilNonTuple.Count - 2;
                         if (degree == 0)
                         {
@@ -171,9 +160,9 @@ namespace randomSTIMA
                             }
 
                         }
-                        label1.Text = "";
+                        
                         label12.Text = "";
-                        label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
+                        label5.Text = "Tidak ada jalur koneksi yang tersedia \nAnda harus memulai koneksi baru \nitu sendiri";
                     }
                 }
                 
@@ -200,19 +189,7 @@ namespace randomSTIMA
                     if (hasil.Count != 0)
                     {
                         List<string> hasilNonTuple = BFS.ExploreNotTuple(nodeTest, selected1, selected2);
-                        string algoPath = "";
-                        int countIsiHasilNonTuple = 0;
-                        foreach (var isi in hasilNonTuple)
-                        {
-                            algoPath += isi;
-                            countIsiHasilNonTuple += 1;
-                            if (countIsiHasilNonTuple != hasilNonTuple.Count)
-                            {
-                                algoPath += " -> ";
-                            }
-
-                        }
-                        label1.Text = algoPath;
+                        
                         
                         int degree = hasilNonTuple.Count - 2;
                         if (degree == 0)
@@ -269,9 +246,9 @@ namespace randomSTIMA
                             }
 
                         }
-                        label1.Text = "";
+                        
                         label12.Text = "";
-                        label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
+                        label5.Text = "Tidak ada jalur koneksi yang tersedia \nAnda harus memulai koneksi baru \nitu sendiri";
                     }
                 }
                 
@@ -315,6 +292,8 @@ namespace randomSTIMA
                     newLabel.Location = new System.Drawing.Point(605,newLabelYPos); 
                     newLabel.Size = new System.Drawing.Size(31, 15);
                     newLabel.Name = "newLabel";
+                    newLabel.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+                    newLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
                     string mutual = " ";
                     int countMutual = 0;
                     List<string> mutualNode = new List<string>();
@@ -349,19 +328,7 @@ namespace randomSTIMA
                         if (hasil.Count != 0)
                         {
                             List<string> hasilNonTuple = DFS.ExploreNotTuple(nodeTest, selected1, selected2);
-                            string algoPath = "";
-                            int countIsiHasilNonTuple = 0;
-                            foreach (var isi in hasilNonTuple)
-                            {
-                                algoPath += isi;
-                                countIsiHasilNonTuple += 1;
-                                if (countIsiHasilNonTuple != hasilNonTuple.Count)
-                                {
-                                    algoPath += " -> ";
-                                }
-
-                            }
-                            label1.Text = algoPath;
+                            
 
                             int degree = hasilNonTuple.Count - 2;
                             if (degree == 0)
@@ -420,9 +387,9 @@ namespace randomSTIMA
                                 }
 
                             }
-                            label1.Text = "";
+                            
                             label12.Text = "";
-                            label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
+                            label5.Text = "Tidak ada jalur koneksi yang tersedia \nAnda harus memulai koneksi baru \nitu sendiri";
                         }
                         
                     }
@@ -436,19 +403,7 @@ namespace randomSTIMA
                         if (hasil.Count != 0)
                         {
                             List<string> hasilNonTuple = BFS.ExploreNotTuple(nodeTest, selected1, selected2);
-                            string algoPath = "";
-                            int countIsiHasilNonTuple = 0;
-                            foreach (var isi in hasilNonTuple)
-                            {
-                                algoPath += isi;
-                                countIsiHasilNonTuple += 1;
-                                if (countIsiHasilNonTuple != hasilNonTuple.Count)
-                                {
-                                    algoPath += " -> ";
-                                }
-
-                            }
-                            label1.Text = algoPath;
+                            
 
                             int degree = hasilNonTuple.Count - 2;
                             if (degree == 0)
@@ -507,8 +462,8 @@ namespace randomSTIMA
 
                             }
                             label12.Text = "";
-                            label1.Text = "";
-                            label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
+                            
+                            label5.Text = "Tidak ada jalur koneksi yang tersedia \nAnda harus memulai koneksi baru \nitu sendiri";
                         }
                     }
                     
@@ -560,6 +515,8 @@ namespace randomSTIMA
                         newLabel.Location = new System.Drawing.Point(605, newLabelYPos);
                         newLabel.Size = new System.Drawing.Size(31, 15);
                         newLabel.Name = "newLabel";
+                        newLabel.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+                        newLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
                         string mutual = " ";
                         int countMutual = 0;
                         List<string> mutualNode = new List<string>();
@@ -590,19 +547,7 @@ namespace randomSTIMA
                         if (hasil.Count != 0)
                         {
                             List<string> hasilNonTuple = DFS.ExploreNotTuple(nodeTest, selected1, selected2);
-                            string algoPath = "";
-                            int countIsiHasilNonTuple = 0;
-                            foreach (var isi in hasilNonTuple)
-                            {
-                                algoPath += isi;
-                                countIsiHasilNonTuple += 1;
-                                if (countIsiHasilNonTuple != hasilNonTuple.Count)
-                                {
-                                    algoPath += " -> ";
-                                }
-
-                            }
-                            label1.Text = algoPath;
+                            
 
                             int degree = hasilNonTuple.Count - 2;
                             if (degree == 0)
@@ -661,9 +606,9 @@ namespace randomSTIMA
                                 }
 
                             }
-                            label1.Text = "";
+                            
                             label12.Text = "";
-                            label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
+                            label5.Text = "Tidak ada jalur koneksi yang tersedia \nAnda harus memulai koneksi baru \nitu sendiri";
                         }
                     }
 
@@ -676,19 +621,7 @@ namespace randomSTIMA
                         if (hasil.Count != 0)
                         {
                             List<string> hasilNonTuple = BFS.ExploreNotTuple(nodeTest, selected1, selected2);
-                            string algoPath = "";
-                            int countIsiHasilNonTuple = 0;
-                            foreach (var isi in hasilNonTuple)
-                            {
-                                algoPath += isi;
-                                countIsiHasilNonTuple += 1;
-                                if (countIsiHasilNonTuple != hasilNonTuple.Count)
-                                {
-                                    algoPath += " -> ";
-                                }
-
-                            }
-                            label1.Text = algoPath;
+                            
 
                             int degree = hasilNonTuple.Count - 2;
                             if (degree == 0)
@@ -745,9 +678,9 @@ namespace randomSTIMA
                                 }
 
                             }
-                            label1.Text = "";
+                            
                             label12.Text = "";
-                            label5.Text = "Tidak ada jalur koneksi yang tersedia \n Anda harus memulai koneksi baru itu sendiri";
+                            label5.Text = "Tidak ada jalur koneksi yang tersedia \nAnda harus memulai koneksi baru \nitu sendiri";
                         }
                     }
                     

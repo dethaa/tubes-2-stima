@@ -68,7 +68,11 @@ namespace randomSTIMA
             result.Reverse();
             return Utility.createRelationTuple(result);
         }
-    
+
+        /* Mengembalikan list of (list of string) yang merepresentasikan sisi sisi hingga terbentuk jalur pertemanan dari simpul person ke simpul friend. 
+         * Penelusuran menggunakan algoritma BFS.
+         * Isi list kosong apabila tidak terdapat koneksi.
+         * bentuk bukan berupa list tuple string, melainkan list string */
         public static List<string> ExploreNotTuple(List<Node> listNode, string person, string friend)
         {
             Node startNode = Utility.searchNode(listNode, person);
