@@ -68,7 +68,7 @@ namespace randomSTIMA
             result.Reverse();
             return Utility.createRelationTuple(result);
         }
-
+    
         public static List<string> ExploreNotTuple(List<Node> listNode, string person, string friend)
         {
             Node startNode = Utility.searchNode(listNode, person);

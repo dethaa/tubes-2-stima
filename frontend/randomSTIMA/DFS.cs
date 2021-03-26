@@ -13,6 +13,8 @@ namespace randomSTIMA
 
         }
 
+        /* Mengembalikan list nama node yang memiliki tetangga person 
+        list akan kosong jika tidak ada yang memiliki person sebagai tetangga */
         public static List<string> getNodeWithAdj(List<Node> listNode, string person)
         {
             List<string> result = new List<string>();
@@ -24,6 +26,7 @@ namespace randomSTIMA
             return result;
         }
 
+        /* Mengembalikan indeks node dengan teman mutual terbanyak */
         public static int getMaxMutualIdx(List<Node> listNode, List<string> friends, string person){
             int idx = 0, mutuals = Utility.getMutualFriend(listNode,friends[0], person).Count;
             for (int i = 1; i < friends.Count; i++) {
@@ -36,6 +39,7 @@ namespace randomSTIMA
             return idx;
         }
 
+        /* Mengurutkan hasil recommend berdasarkan teman mutual terbanyak */
         public static List<string> sortRecommend(List<Node> listNode,List<string> friends, string person) 
         {
             int idx;
@@ -49,7 +53,8 @@ namespace randomSTIMA
             return result;
         }
 
-        //mengembalikan rekomendasi teman yang memiliki mutual friend yang sama dengan simpul bernama person
+        /* Mengembalikan rekomendasi teman yang memiliki mutual friend yang sama dengan simpul 
+        bernama person */
         public static List<string> Recommend(List<Node> listNode, string person)
         {
             Node personNode = Utility.searchNode(listNode, person);

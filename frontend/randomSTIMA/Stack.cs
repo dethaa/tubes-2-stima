@@ -8,14 +8,20 @@ namespace randomSTIMA
 {
     class Stack
     {
+        /* Atribut dari stack */
+        /* Menyimpan nama node */
         private List<string> friends;
+        /* Menyimpan total isi stack saat ini */
         private int numFriends;
+
+        /* Constructor */
         public Stack()
         {
             friends = new List<string>();
             numFriends = 0;
         }
 
+        /* Mengembalikan elemen teratas stack */
         public string Top()
         {
             if (numFriends > 0)
@@ -24,12 +30,15 @@ namespace randomSTIMA
             }
             return "NULL";
         }
+        
+        /* Memasukkan elemen baru ke stack sebagai elemen teratas */
         public void Push(string newElmt)
         {
             friends.Add(newElmt);
             numFriends++;
         }
 
+        /* Mengembalikan elemen teratas dari stack dan menghapusnya dari stack */
         public string Pop()
         {
             if (numFriends > 0)
@@ -43,8 +52,10 @@ namespace randomSTIMA
             return "NULL";
         }
 
+        /* Mengembalikan apakah stack kosong atau tidak */
         public bool isEmpty() { return numFriends == 0; }
 
+        /* Mengoutput seluruh atribut stack ke layar */
         public void Show()
         {
             Console.WriteLine("Friends: " + numFriends);

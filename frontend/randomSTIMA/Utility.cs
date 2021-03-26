@@ -8,10 +8,11 @@ namespace randomSTIMA
 {
     class Utility
     {
+        /* Constructor */
         public Utility() { }
 
-        // mencari node dengan nama .. di list of node
-        // dipastikan ada node dengan nama yang dicari
+        /* Mencari node dengan nama "name" di list of node
+        dipastikan ada node dengan nama yang dicari */
         public static Node searchNode(List<Node> listNode, string name)
         {
             foreach (var node in listNode)
@@ -22,11 +23,11 @@ namespace randomSTIMA
                 }
             }
 
-            // ini biar gak error aja walaupun sebenernya gak bakal kesini sih
             return new Node("NULL");
 
         }
 
+        /* Mengembalikan index node dengan nama tertentu */
         public static int getNodeIdx(List<Node> listNode, string person)
         {
             int i = 0;
@@ -39,6 +40,7 @@ namespace randomSTIMA
             return -1;
         }
 
+        /* Mengembalikan nilai boolean apakah semua isi list node telah dikunjungi */
         public static bool isAllVisited(List<Node> listNode)
         {
 
@@ -51,17 +53,13 @@ namespace randomSTIMA
 
         }
 
-        public static void makeAdjEachOther(Node a, Node b)
-        {
-            a.addNewAdj(b.getName());
-            b.addNewAdj(a.getName());
-        }
-
+        /* Mengembalikan nilai boolean apakah terdapat sebuat node dengan nama "name" */
         public static bool isNodeExists(List<Node> listNode, string name)
         {
             return searchNode(listNode, name).getName() == "NULL";
         }
 
+        /* Mencari string str dalam list of list string */
         public static int findString(string str, List<List<string>> listAll)
         {
             int k = 0;
@@ -76,6 +74,7 @@ namespace randomSTIMA
             return -1;
         }
 
+        /* Mencari string str dalam list of string */        
         public static int findString2(string str, List<string> listStr)
         {
             int k = 0;
@@ -90,6 +89,7 @@ namespace randomSTIMA
             return -1;
         }
 
+        /* Membandingkan dua string */
         public static string compareString(string A, string B)
         {
             if (String.Compare(A, B) == 1)
@@ -102,6 +102,7 @@ namespace randomSTIMA
             }
         }
 
+        /* Membandingkan dua node */
         public static Node compareNode(Node A, Node B)
         {
             if (compareString(A.getName(), B.getName()) == A.getName())
@@ -123,7 +124,7 @@ namespace randomSTIMA
             }
         }
 
-        // mengembalikan mutual friend, dipastikan ada isinya
+        /* Mengembalikan mutual friend dari dua orang */
         public static List<string> getMutualFriend(List<Node> listNode, string person, string friend)
         {
             List<string> result = new List<string>();
@@ -140,7 +141,7 @@ namespace randomSTIMA
             return result;
         }
 
-        //mengembalikan tetangga yang belum dikunjungi dari suatu node
+        /* Mengembalikan tetangga yang belum dikunjungi dari suatu node */
         public static List<string> getUnvisitedAdj(Node node, List<Node> listNode)
         {
             List<string> result = new List<string>();
@@ -155,7 +156,7 @@ namespace randomSTIMA
             return result;
         }
 
-        //men-set semua node yang namanya terdapat pada listStr menjadi sudah dikunjungi
+        /* men-set semua node yang namanya terdapat pada listStr menjadi sudah dikunjungi */
         public static void setAllVisited(List<Node> listNode, List<string> listStr)
         {
             foreach (var name in listStr)
@@ -200,7 +201,7 @@ namespace randomSTIMA
             return result;
         }
 
-        //menampilkan st/nd/rd/th sesuai syarat number order di bahasa inggris
+        // menampilkan st/nd/rd/th sesuai syarat number order di bahasa inggris
         public static string numberOrder(int number)
         {
             if (number-1==0 || ((number - 1) % 10) == 0)

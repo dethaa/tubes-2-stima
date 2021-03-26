@@ -8,6 +8,7 @@ namespace randomSTIMA
 {
     public class Input
     {
+        /* Membuat list string berisi nama node dengan tetangganya dari file input */
         public static List<List<string>> inputToList(string fileName)
         {
             int i, index1, index2;
@@ -45,7 +46,8 @@ namespace randomSTIMA
             return listAll;
         }
 
-        //input tuple tanpa node hasil
+        /* Mengganti list string dari method inputToList menjadi nama node dan 
+        tetangganya sebagai tuple */
         public static List<List<string>> inputToListTuple(string fileName, List<List<string>> nodeHasil)
         {
             int i;
@@ -80,7 +82,7 @@ namespace randomSTIMA
             return listAll;
         }
 
-        // membuat list of nodes
+        /* Membuat list of nodes dari hasil inputToList */
         public static List<Node> makeNodes(List<List<string>> listAdj)
         {
             List<Node> result = new List<Node>();
@@ -99,6 +101,7 @@ namespace randomSTIMA
 
         }
 
+        /* Membuat node kecuali akun yang sedang terpilih */
         public static List<Node> makeNodesExceptCurrAccount(List<List<string>> listAdj, string account)
         {
             List<Node> result = new List<Node>();
@@ -126,7 +129,7 @@ namespace randomSTIMA
 
         }
 
-        // return Node dengan menggunakan string
+        /* Mengembalikan Node dengan nama tertentu */
         public static Node getNode(string namaNode, List<Node> node)
         {
             foreach (var nodeName in node)
