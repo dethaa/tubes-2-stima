@@ -11,7 +11,7 @@ Aplikasi ini menerima file teks dengan ekstensi .txt dari pengguna dan akan mena
 - 13519120 Epata Tuah
 
 ## System Requirements
-- Windows x64-bit (minimal)
+- Windows x64-bit
 
 ## Panduan Instalasi
 1. Setelah mendownload, masuk ke folder bin dan kemudian ke folder publish
