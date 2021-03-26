@@ -29,5 +29,5 @@ Terdapat dua pilihan algoritma yang dapat dipilih ketika menelusuri teman, yaitu
 ### Explore Friends
 Untuk menggunakan fitur ini, pengguna cukup memilih algoritma mana yang ingin digunakan serta dua orang yang ingin ditelusuri koneksinya. Aplikasi kemudian akan menunjukkan hasil penelusuran pada tampilan bagian tengah serta jumlah derajat pertemanan di tampilan bagian kanan.
 
-### Recommend Friens
+### Recommend Friends
 Fitur ini akan ditampilkan secara otomatis tergantung orang yang dipilih oleh pengguna. Hasil dari rekomendasi teman akan ditampilkan di tampilan bagian kanan.
