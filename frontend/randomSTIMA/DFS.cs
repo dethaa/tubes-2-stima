@@ -49,12 +49,12 @@ namespace randomSTIMA
             return result;
         }
 
+        //mengembalikan rekomendasi teman yang memiliki mutual friend yang sama dengan simpul bernama person
         public static List<string> Recommend(List<Node> listNode, string person)
         {
             Node personNode = Utility.searchNode(listNode, person);
             listNode[Utility.getNodeIdx(listNode, person)].hasVisited();
             Node friendNode;
-            // Stack stack = new Stack();
             List<string> newFriends = new List<string>();
 
             while(!personNode.isAllAdjVisited(listNode))
@@ -63,8 +63,13 @@ namespace randomSTIMA
                 listNode[Utility.getNodeIdx(listNode, friendNode.getName())].hasVisited();
                 while(!friendNode.isAllAdjVisited(listNode))
                 {
-                    newFriends.Add(friendNode.getPriorityAdj(listNode));
-                    listNode[Utility.getNodeIdx(listNode, friendNode.getPriorityAdj(listNode))].hasVisited();
+                    string recommendedFriend = friendNode.getPriorityAdj(listNode);
+                    if (!personNode.hasAdj(recommendedFriend))
+                    {
+                        newFriends.Add(recommendedFriend);
+                    }
+                    listNode[Utility.getNodeIdx(listNode, recommendedFriend)].hasVisited();
+
                 }
             }
 
@@ -72,6 +77,9 @@ namespace randomSTIMA
             return sortRecommend(listNode,newFriends, person);
         }
 
+        /* Mengembalikan list of (list of string) yang merepresentasikan sisi sisi hingga terbentuk jalur pertemanan dari simpul person ke simpul friend. 
+         * Penelusuran menggunakan algoritma DFS.
+         * Isi list kosong apabila tidak terdapat koneksi. */
         public static List<List<string>> Explore(List<Node> listNode, string person, string friend)
         {
             Node temp = Utility.searchNode(listNode, person);

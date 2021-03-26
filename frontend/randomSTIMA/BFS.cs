@@ -8,6 +8,9 @@ namespace randomSTIMA
 {
     class BFS
     {
+        /* Mengembalikan list of (list of string) yang merepresentasikan sisi sisi hingga terbentuk jalur pertemanan dari simpul person ke simpul friend. 
+         * Penelusuran menggunakan algoritma BFS.
+         * Isi list kosong apabila tidak terdapat koneksi. */
         public static List<List<string>> Explore(List<Node> listNode, string person, string friend)
         {
             Node startNode = Utility.searchNode(listNode, person);
@@ -25,11 +28,10 @@ namespace randomSTIMA
                 if (i == -1)
                 {
                     Utility.setAllVisited(listNode, listTemp1);
-                    //int k = 0;
                     while (listTemp1.Any())
                     {
-                        Node temp2 = Utility.searchNode(listNode, listTemp1[0]);
-                        List<string> listTemp2 = Utility.getUnvisitedAdj(temp2, listNode);
+                        Node temp = Utility.searchNode(listNode, listTemp1[0]);
+                        List<string> listTemp2 = Utility.getUnvisitedAdj(temp, listNode);
                         Utility.setAllParent(listNode, listTemp2, listTemp1[0]);
 
                         int j = Utility.findString2(friend, listTemp2);
@@ -126,6 +128,8 @@ namespace randomSTIMA
             return result;
         }
 
+        /* prosedur rekursif yang memasukkan nodeName ke stack dengan terlebih dahulu mem-push parent yang dimiliki oleh node tersebut. 
+         * Apabila parent juga memiliki parent, akan mem-push parent dari parent terlebih dahulu, demikian seterusnya */
         public static void pushCheck(Stack stack, string str, List<Node> listNode)
         {
             Node temp = Utility.searchNode(listNode, str);
