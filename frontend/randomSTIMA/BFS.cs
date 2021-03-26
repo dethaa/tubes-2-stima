@@ -20,15 +20,15 @@ namespace randomSTIMA
             List<string> result = new List<string>();
             stack.Push(adj);
             listNode[Utility.getNodeIdx(listNode, person)].hasVisited();
-            
-             while (stack.Top() != friend && !Utility.isAllVisited(listNode))
+            List<string> listTemp1 = Utility.getUnvisitedAdj(startNode, listNode);
+
+            while (stack.Top() != friend && !Utility.isAllVisited(listNode) && !isNoMoreToSearch(listTemp1, listNode))
              {
-                List<string> listTemp1 = Utility.getUnvisitedAdj(startNode, listNode);
                 int i = Utility.findString2(friend, listTemp1);
                 if (i == -1)
                 {
                     Utility.setAllVisited(listNode, listTemp1);
-                    while (listTemp1.Any())
+                    while (listTemp1.Any() && !isNoMoreToSearch(listTemp1, listNode))
                     {
                         Node temp = Utility.searchNode(listNode, listTemp1[0]);
                         List<string> listTemp2 = Utility.getUnvisitedAdj(temp, listNode);
@@ -40,7 +40,6 @@ namespace randomSTIMA
                             Utility.setAllVisited(listNode, listTemp2);
                             listTemp1.RemoveAt(0);
                             listTemp1.AddRange(listTemp2);
-                           
                         }
                         else
                         {
@@ -53,6 +52,7 @@ namespace randomSTIMA
                 {
                     stack.Push(listTemp1[i]);
                 }
+                
 
              }
 
@@ -63,6 +63,7 @@ namespace randomSTIMA
                     result.Add(stack.Pop());
                 }
             }
+            
 
             Utility.resetStatus(listNode);
             result.Reverse();
@@ -82,16 +83,15 @@ namespace randomSTIMA
             List<string> result = new List<string>();
             stack.Push(adj);
             listNode[Utility.getNodeIdx(listNode, person)].hasVisited();
+            List<string> listTemp1 = Utility.getUnvisitedAdj(startNode, listNode);
 
-            while (stack.Top() != friend && !Utility.isAllVisited(listNode))
+            while (stack.Top() != friend && !Utility.isAllVisited(listNode) && !isNoMoreToSearch(listTemp1, listNode))
             {
-                List<string> listTemp1 = Utility.getUnvisitedAdj(startNode, listNode);
                 int i = Utility.findString2(friend, listTemp1);
                 if (i == -1)
                 {
                     Utility.setAllVisited(listNode, listTemp1);
-                    //int k = 0;
-                    while (listTemp1.Any())
+                    while (listTemp1.Any() && !isNoMoreToSearch(listTemp1, listNode))
                     {
                         Node temp2 = Utility.searchNode(listNode, listTemp1[0]);
                         List<string> listTemp2 = Utility.getUnvisitedAdj(temp2, listNode);
@@ -146,6 +146,20 @@ namespace randomSTIMA
                 pushCheck(stack, temp.getParent(), listNode);
                 stack.Push(str);
             }
+        }
+
+        //mengembalikan true apabila tidak ada lagi node yang namanya berada pada listString yang memiliki tetangga yang belum dikunjungi
+        public static Boolean isNoMoreToSearch(List<string> listString, List<Node> listNode)
+        {
+            foreach(var str in listString)
+            {
+                Node node = Utility.searchNode(listNode, str);
+                if (node.getPriorityAdj(listNode) != "NULL")
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
     }
